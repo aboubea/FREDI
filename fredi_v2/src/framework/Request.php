@@ -6,9 +6,9 @@
 */
 
 class Request {
-  
+
   private $params=array(); // Tableau des paramètres de la requête
-  
+
   /**
   * Ajoute un paramètre dans la requête
   * @param string $key
@@ -17,7 +17,7 @@ class Request {
   public function set($key, $value=NULL) {
     $this->params[$key] = $value;
   }
-  
+
   /**
   * Lit un paramètre dans la requête
   * @param string la clé du paramètre
@@ -31,7 +31,7 @@ class Request {
     }
     return $value;
   }
-    
+
   /**
   * Indique si un paramètre existe dans la requête
   * @param string $key
@@ -40,7 +40,7 @@ class Request {
   public function exists($key)  {
     return isset($this->params[$key]);
   }
-  
+
   /**
   * Initialise le tableau des paramètres de la requête
   * @param array $params
@@ -48,7 +48,7 @@ class Request {
   public function set_params(array $params) {
     $this->params = $params;
   }
-  
+
   /**
   * Renvoie le tableau des paramètres de la requête
   * @return array Tableau des paramètres
@@ -56,7 +56,7 @@ class Request {
   private function get_params() {
     return $this->params;
   }
-  
+
 }
 
-// classe Request 
+// classe Request

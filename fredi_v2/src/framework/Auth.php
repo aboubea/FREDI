@@ -3,7 +3,7 @@
 /**
  * Classe d'authentification et d'autorisation
  *
- * @author jef
+ * @author Paco
  */
 require_once SRC . DS . 'DAO' . DS . 'AdherentDAO.php';
 require_once SRC . DS . 'models' . DS . 'Adherent.php';

@@ -2,9 +2,9 @@
 
 /**
  * Classe Helper
- * 
+ *
  * Classe fourre-tout qui contient des méthodes utilitaires
- * @author jef
+ * @author Paco
  */
 class Helper {
 

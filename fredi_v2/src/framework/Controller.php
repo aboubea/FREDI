@@ -2,16 +2,16 @@
 
 /**
 * Classe mère Contrôleur
-* @author jef
+* @author Paco
 */
 require_once SRC . DS . 'framework' . DS . 'Request.php';
 require_once SRC . DS . 'framework' . DS . 'Controller.php';
 require_once SRC . DS . 'framework' . DS . 'Flash.php';
 
 abstract class Controller {
-  
+
   protected $request;  // Requête HTTP
-  
+
 
    // Getter et setter
 
@@ -27,7 +27,7 @@ abstract class Controller {
   * Méthode abstraite pour forcer l'implémentation de l'action par défaut
   */
   public abstract function index();
-  
+
   /**
   * Construit et affiche la vue
   * @param type $view
@@ -41,7 +41,7 @@ abstract class Controller {
     // Affiche la page dans le navigateur
     echo $page;
   }
-  
+
   /**
   * Génère une vue à partir de son template et de ses données
   * @param string $view le nom de la vue de la vue (avec son répertoire)
@@ -62,7 +62,7 @@ abstract class Controller {
     // Retourne la vue au format HTML
     return $html;
   }
-  
+
   /**
   * Fait une redirection
   * Si le chemin n'est pas précisé, on retourne à la page d'accueil
@@ -77,5 +77,5 @@ abstract class Controller {
     header('Location: ' . $url);
     exit; // Obligatoire sinon PHP continue à s'exécuter avant de réaliser la redirection
   }  //  function redirect
-  
+
 }  // class Controller

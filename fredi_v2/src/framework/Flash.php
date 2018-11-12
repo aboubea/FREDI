@@ -6,7 +6,7 @@
  * Le principe est de stocker les messages en session puis de les dépiler dans la page suivante
  * Quand un message est affiché, il est en même temps supprimé de la session
  * On peut stocker plusieurs messages avant de les afficher
- * @author jef
+ * @author Paco
  */
 class Flash {
 

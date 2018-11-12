@@ -3,18 +3,18 @@
 /**
 * Classe mère DAO
 *
-* @author jef
+* @author Paco
 */
 
 abstract class DAO {
-  
+
   protected $pdo = NULL;  // Objet de connexion
-  
+
   /**
   * Ouvre une connexion à la base de données
   * @throws PDOException
   */
-  
+
   private function get_connection() {
     // On construit le DSN
     $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME;
@@ -26,7 +26,7 @@ abstract class DAO {
       throw new Exception("Erreur lors de la connexion à la base de données : " . $e->getMessage())."\nDSN : ".$dsn;
     }
   }
-  
+
   /**
   * Exécute une requête SQL
   * @param string $sql Requête SQL
@@ -47,5 +47,5 @@ abstract class DAO {
     }
     return $sth;  // Retourne le PDOStatement
   }
-  
+
 }  // class DAO
