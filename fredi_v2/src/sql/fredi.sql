@@ -240,7 +240,7 @@ CREATE TABLE `responsable_legal` (
 --       `inscrit` -> `id_inscrit`
 --
 
---
+-- 
 -- Index pour les tables déchargées
 --
 
