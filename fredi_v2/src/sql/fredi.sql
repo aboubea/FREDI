@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 12 nov. 2018 à 14:07
+-- Généré le :  lun. 12 nov. 2018 à 15:39
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -19,17 +19,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `fredi`
+-- Base de données :  `fredi_v2`
 --
-CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `fredi`;
+
+CREATE DATABASE IF NOT EXISTS `fredi_v2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `fredi_v2`;
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `adherent`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:11
 --
 
 CREATE TABLE `adherent` (
@@ -60,7 +61,7 @@ CREATE TABLE `adherent` (
 --
 -- Structure de la table `club`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:12
 --
 
 CREATE TABLE `club` (
@@ -83,7 +84,7 @@ CREATE TABLE `club` (
 --
 -- Structure de la table `indemnite`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:12
 --
 
 CREATE TABLE `indemnite` (
@@ -100,7 +101,7 @@ CREATE TABLE `indemnite` (
 --
 -- Structure de la table `inscrit`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:12
 --
 
 CREATE TABLE `inscrit` (
@@ -118,7 +119,7 @@ CREATE TABLE `inscrit` (
 --
 -- Structure de la table `ligne_frais`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:13
 --
 
 CREATE TABLE `ligne_frais` (
@@ -146,7 +147,7 @@ CREATE TABLE `ligne_frais` (
 --
 -- Structure de la table `ligue`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:13
 --
 
 CREATE TABLE `ligue` (
@@ -163,7 +164,7 @@ CREATE TABLE `ligue` (
 --
 -- Structure de la table `motif`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:13
 --
 
 CREATE TABLE `motif` (
@@ -180,7 +181,7 @@ CREATE TABLE `motif` (
 --
 -- Structure de la table `note_frais`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:13
 --
 
 CREATE TABLE `note_frais` (
@@ -196,7 +197,7 @@ CREATE TABLE `note_frais` (
 --
 -- Structure de la table `ouvrir`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:13
 --
 
 CREATE TABLE `ouvrir` (
@@ -220,7 +221,7 @@ CREATE TABLE `ouvrir` (
 --
 -- Structure de la table `responsable_legal`
 --
--- Création :  lun. 05 nov. 2018 à 14:39
+-- Création :  lun. 12 nov. 2018 à 14:13
 --
 
 CREATE TABLE `responsable_legal` (
@@ -240,7 +241,7 @@ CREATE TABLE `responsable_legal` (
 --       `inscrit` -> `id_inscrit`
 --
 
--- 
+--
 -- Index pour les tables déchargées
 --
 
