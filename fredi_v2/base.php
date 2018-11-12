@@ -18,8 +18,8 @@
                 <a class="navbar-item" href="#team">L'équipe</a>
             </div>
         </div>
-        <!--navigation-->
-        
+        <!--navigation n-->
+
 
         <!-- Hero-Section
           ================================================== -->
@@ -31,24 +31,24 @@
                 </div><!--hero-left-->
                 <div class="base">
                     <?php
-                    
+
                         if (!empty($_SESSION)) {
                             echo "<h1>Bienvenue sur notre FREDI <br /><strong><i>". $_SESSION['nom']."</i></strong> </h1>";
                             } else
                             {
                                 include 'login.php';
                                 echo '<a href ="base2.php">Ou inscrivez vous ici<a>';
-                            } 
+                            }
                     ?>
-                    
+
             </div>
-            
+
         </div><!--hero-->
 
 
 
     </div> <!--hero-container-->
-    
+
 </div><!--hero-background-->
 
 
