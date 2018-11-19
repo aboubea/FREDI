@@ -5,8 +5,6 @@
  *
  * @author Paco
  */
-require_once SRC . DS . 'models' . DS . 'Adherent.php';
-require_once SRC . DS . 'framework' . DS . 'DAO.php';
 
 class AdherentDAO extends DAO {
 
