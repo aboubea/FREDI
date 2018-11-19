@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 19 nov. 2018 à 14:12
+-- Généré le :  lun. 19 nov. 2018 à 16:30
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `fredo`
+-- Base de données :  `fredi`
 --
+CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `fredi`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +31,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `adherent` (
-  `licence_adh` VARCHAR(25) NOT NULL,
+  `licence_adh` varchar(25) NOT NULL,
   `nom_adh` varchar(25) DEFAULT NULL,
   `prenom_adh` varchar(25) DEFAULT NULL,
   `sexe_adh` tinyint(1) DEFAULT NULL,
@@ -41,6 +43,23 @@ CREATE TABLE `adherent` (
   `mdp_inscrit` varchar(50) DEFAULT NULL,
   `id_club` int(11) NOT NULL,
   `id_resp_leg` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `adherent_csv`
+--
+
+CREATE TABLE `adherent_csv` (
+  `licence_adh_csv` varchar(25) NOT NULL,
+  `sexe_adh_csv` tinyint(1) DEFAULT NULL,
+  `nom_adh_csv` varchar(25) DEFAULT NULL,
+  `prenom_adh_csv` varchar(25) DEFAULT NULL,
+  `date_adh_csv` date DEFAULT NULL,
+  `adresse_adh_csv` varchar(30) DEFAULT NULL,
+  `cp_adh_csv` char(5) DEFAULT NULL,
+  `ville_adh_csv` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -117,8 +136,23 @@ CREATE TABLE `motif` (
 
 CREATE TABLE `note_frais` (
   `id_note_frais` int(11) NOT NULL,
-  `licence_adh` VARCHAR(25) NOT NULL,
+  `licence_adh` varchar(25) NOT NULL,
   `id_ligne_frais` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `responsable_crib`
+--
+
+CREATE TABLE `responsable_crib` (
+  `id_resp_crib` int(11) NOT NULL,
+  `nom_resp_crib` varchar(25) DEFAULT NULL,
+  `prenom_resp_crib` varchar(25) DEFAULT NULL,
+  `mail_resp_crib` varchar(50) DEFAULT NULL,
+  `mdp_resp_crib` varchar(50) DEFAULT NULL,
+  `id_ligue` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -141,21 +175,6 @@ CREATE TABLE `responsable_legal` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `responsable_crib`
---
-
-CREATE TABLE `responsable_crib` (
-  `id_resp_crib` int(11) NOT NULL,
-  `nom_resp_crib` varchar(25) DEFAULT NULL,
-  `prenom_resp_crib` varchar(25) DEFAULT NULL,
-  `mail_resp_crib` varchar(50) DEFAULT NULL,
-  `mdp_resp_crib` varchar(50) DEFAULT NULL,
-  `id_ligue` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `tresorier`
 --
 
@@ -170,23 +189,6 @@ CREATE TABLE `tresorier` (
   `id_note_frais` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Structure de la table `adherent_csv`
---
-
-CREATE TABLE `adherent_csv` (
-  `licence_adh_csv` VARCHAR(25) DEFAULT NULL,
-  `sexe_adh_csv` tinyint(1) DEFAULT NULL,
-  `nom_adh_csv` varchar(25) DEFAULT NULL,
-  `prenom_adh_csv` varchar(25) DEFAULT NULL,
-  `date_adh_csv` date DEFAULT NULL,
-  `adresse_adh_csv` varchar(30) DEFAULT NULL,
-  `cp_adh_csv` char(5) DEFAULT NULL,
-  `ville_adh_csv` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Index pour les tables déchargées
 --
@@ -198,6 +200,13 @@ ALTER TABLE `adherent`
   ADD PRIMARY KEY (`licence_adh`),
   ADD KEY `Adherent_Club_FK` (`id_club`),
   ADD KEY `Adherent_Responsable_Legal_FK` (`id_resp_leg`);
+
+--
+-- Index pour la table `adherent_csv`
+--
+ALTER TABLE `adherent_csv`
+  ADD PRIMARY KEY (`licence_adh_csv`);
+
 --
 -- Index pour la table `club`
 --
@@ -233,17 +242,17 @@ ALTER TABLE `note_frais`
   ADD KEY `Note_Frais_Ligne_Frais_FK` (`id_ligne_frais`);
 
 --
--- Index pour la table `responsable_legal`
---
-ALTER TABLE `responsable_legal`
-  ADD PRIMARY KEY (`id_resp_leg`);
-
---
 -- Index pour la table `responsable_crib`
 --
 ALTER TABLE `responsable_crib`
   ADD PRIMARY KEY (`id_resp_crib`),
   ADD KEY `Responsable_Crib_Ligue_FK` (`id_ligue`);
+
+--
+-- Index pour la table `responsable_legal`
+--
+ALTER TABLE `responsable_legal`
+  ADD PRIMARY KEY (`id_resp_leg`);
 
 --
 -- Index pour la table `tresorier`
@@ -254,12 +263,6 @@ ALTER TABLE `tresorier`
   ADD KEY `Tresorier_note_frais_FK` (`id_note_frais`);
 
 --
--- Index pour la table `adherent_csv`
---
-ALTER TABLE `adherent_csv`
-  ADD PRIMARY KEY (`licence_adh_csv`);
-
---
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -268,7 +271,6 @@ ALTER TABLE `adherent_csv`
 --
 ALTER TABLE `club`
   MODIFY `id_club` int(11) NOT NULL AUTO_INCREMENT;
-
 
 --
 -- AUTO_INCREMENT pour la table `ligne_frais`
@@ -327,8 +329,8 @@ ALTER TABLE `ligne_frais`
 -- Contraintes pour la table `note_frais`
 --
 ALTER TABLE `note_frais`
-  ADD CONSTRAINT `note_frais_Ligne_Frais_FK` FOREIGN KEY (`id_ligne_frais`) REFERENCES `ligne_frais` (`id_ligne_frais`),
-  ADD CONSTRAINT `note_frais_Adherent_FK` FOREIGN KEY (`licence_adh`) REFERENCES `adherent` (`licence_adh`);
+  ADD CONSTRAINT `note_frais_Adherent_FK` FOREIGN KEY (`licence_adh`) REFERENCES `adherent` (`licence_adh`),
+  ADD CONSTRAINT `note_frais_Ligne_Frais_FK` FOREIGN KEY (`id_ligne_frais`) REFERENCES `ligne_frais` (`id_ligne_frais`);
 
 --
 -- Contraintes pour la table `responsable_crib`
@@ -342,7 +344,6 @@ ALTER TABLE `responsable_crib`
 ALTER TABLE `tresorier`
   ADD CONSTRAINT `tresorier_Club_FK` FOREIGN KEY (`id_club`) REFERENCES `club` (`id_club`),
   ADD CONSTRAINT `tresorier_Note_Frais_FK` FOREIGN KEY (`id_note_frais`) REFERENCES `note_frais` (`id_note_frais`);
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
