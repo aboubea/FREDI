@@ -2,6 +2,7 @@
 
 class club{
 
+private $id_club="???";
 private $libelle_club="???";
 private $adresse_club="???";
 private $cp_club="???";

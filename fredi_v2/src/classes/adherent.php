@@ -2,7 +2,7 @@
 
 class adherent extends inscrit{
 
-//private $licence_adh="???";
+private $licence_adh="???";
 private $nom_adh="???";
 private $prenom_adh="???";
 private $sexe_adh="???";
@@ -20,6 +20,10 @@ function __construct(array $tableau = null) {
 }
 
 //getter
+function get_licence_adh(){
+  return $this->licence_adh;
+  }
+
 function get_nom_adh(){
 return $this->nom_adh;
 }
@@ -48,6 +52,10 @@ return $this->ville_adh;
 }
 
 //setter
+function set_licence_adh($licence_adh){
+  $this->licence_adh= $licence_adh;
+}
+
 function set_nom_adh($nom_adh){
 $this->nom_adh= $nom_adh;
 }
@@ -87,10 +95,5 @@ function hydrater(array $tableau) {
   }
 }
 
-
-
 }
-
-
-
  ?>
