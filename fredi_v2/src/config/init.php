@@ -1,37 +1,39 @@
 <?php
+//
+// Initialisations dans chaque page
+//
 
-/*
- * Configuration de l'application
+/**
+ * Paramétrage pour certains serveurs qui n'affichent pas les erreurs PHP par défaut
  */
+ini_set('display_errors', '1');
+ini_set('html_errors', '1');
 
-// error reporting - all errors for development (ensure you have display_errors = On in your php.ini file)
-error_reporting(E_ALL | E_STRICT);
-// Encodage avec les fonctions mb_*
-mb_internal_encoding('UTF-8');
-// Force le fuseau de Paris
-date_default_timezone_set('Europe/Paris');
+/**
+ * Autoload
+ * @param string $classe
+ */
+function my_autoloader($classe) {
+  include 'classes/' . $classe . '.php';
+}
 
-// Définition des chemins des fichiers
-define('ROOT', dirname(dirname(dirname(__FILE__))));  // Racine du site en absolu
-// TODO : il y a dans la doc. un second paramètre pour indiquer que l'on remonte MAIS ça ne fonctionne pas en PHP5, il faut passer à PHP7
+spl_autoload_register('my_autoloader');
 
-define('DS', DIRECTORY_SEPARATOR);   // Séparateur de dossier (dépend de l'OS)
-define('SRC', ROOT . DS . 'src');  // Dossier src en absolu
-// Définition des URLs
-define('BASEURL', dirname($_SERVER['SCRIPT_NAME']));
-define('CSS', BASEURL . '/css');
-define('JS', BASEURL . '/js');
+/**
+ * Vide le cache du navigateur
+ */
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 
-// Paramètre de la base de données
-define('DB_USER','root');
-define('DB_PASSWORD','');
-define('DB_HOST','localhost');
-define('DB_NAME','fredi_v2');
+/**
+ * titre du site
+ */
+define('APPLINAME','fredi_v2');
 
-// Paramètres de l'application
-define('APPLINAME', 'fredi_v2');
-
-// Gestion de la session
-require_once SRC . DS . 'models' . DS . 'adherent.php';  // Obligatoire pour tous les objets susceptibles d'être sérialisés dans la session
-session_start();
-session_id('fredi_v2');
+/**
+ * Paramètre de la base de données
+ */
+ define('DB_USER','root');
+ define('DB_PASSWORD','');
+ define('DB_HOST','localhost');
+ define('DB_NAME','fredi_v2');
