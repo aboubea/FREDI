@@ -1,4 +1,4 @@
-# FREDI :smile:
+# FREDI
 
 Saisie de bordereau ( lignes de frais ) sur un site web, 4 acteurs, l'adhérent, le responsable légal, le trésorier et le responsable du CRIB
 
