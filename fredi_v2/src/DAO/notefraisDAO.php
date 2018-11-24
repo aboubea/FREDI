@@ -15,14 +15,16 @@ class notefraisDAO extends DAO {
 
   function find($id_note){
     $sql = "select * from note_frais where id_note_frais = :id_note";
-    $sth = $this->executer($sql);
+$params = array("id_note" => $id_note);
+    $sth = $this->executer($sql, $params);
     $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-    $tableau = array();
-    foreach ($rows as $row) {
-      $tableau[] = new notefrais($row);
+    if ($row !==FALSE) {
+      $notefrais = new notefrais($row);
+    } else {
+      $notefrais = new notefrais();
     }
-    // Retourne un tableau d'objet métier
-    return $tableau;
+    // Retourne l'objet métier
+    return $notefrais;
   }
 
   function insert($notefrais){

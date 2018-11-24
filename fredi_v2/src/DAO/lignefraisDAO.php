@@ -20,12 +20,12 @@ function find($id_ligne){
   $sth = $this->executer($sql, $params);
   $row = $sth->fetch(PDO::FETCH_ASSOC);
   if ($row !==FALSE) {
-    $customers = new lignefrais($row);
+    $lignefrais = new lignefrais($row);
   } else {
-    $customers = new lignefrais();
+    $lignefrais = new lignefrais();
   }
   // Retourne l'objet métier
-  return $customers;
+  return $lignefrais;
 }
 
 function insert($lignefrais){
