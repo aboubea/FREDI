@@ -27,6 +27,9 @@ $params = array("id_note" => $id_note);
     return $notefrais;
   }
 
+
+
+
   function insert($notefrais){
       $sql = "insert into note_frais () VALUES ()";
       $sth = $this->executer($sql);
@@ -34,6 +37,9 @@ $params = array("id_note" => $id_note);
       // Retourne le nombre de mise à jour
       return $nb;
   }
+
+
+
 
   function delete($id_note){
     $sql = "delete from note_frais where id_note_frais= :id_note";
