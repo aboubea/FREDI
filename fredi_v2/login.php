@@ -19,7 +19,9 @@
   <br />
   <br />
   <form method="POST" action="testlog.php">
-    <input id="in" type="text" name="pseudo" placeholder="Identifiant"></br></br>
-    <input id="in" type="password" name="mdp" placeholder="Mot de Passe"></br></br>
-    <input id="envoy" type="submit" value="Connexion">
+    <input id="" type="text" name="" placeholder="Identifiant"></br></br>
+    <input id="" type="password" name="" placeholder="Mot de Passe"></br></br>
+    <input id="" type="submit" value="Connexion">
   </form>
+</br>
+  <p>Revenir à la <a href="page1.php">page précédente</a></p>

@@ -17,16 +17,33 @@ include 'src/config/init.php';
 
 <h2>S'Inscrire</h2>
 <form action="testp01.php" method="POST">
-            Entrez votre pseudo: <input id="in" type="text" name="PS">
+            Entrez votre nom : <input id="" type="text" name="">
             </br>
-            Entrez votre mot de passe: <input id="in" type="text" name="MDP">
+            Entrez votre prénom : <input id="" type="text" name="">
             </br>
-            Comfirmez votre mot de passe: <input id="in" type="text" name="MDP1">
+            Entrez votre sexe : <select id="in" name="ligue" size="1"></br>
+                <option value="1">Femme</option>
+                <option value="2">Homme</option>
+            </select>
+            </br>
 			      </br>
-            Entrez votre mail: <input id="in" type="text" name="MA">
+            Entrez votre date de naissance : <input id="" type="text" name="">
             </br>
-            <input id="envoy" type="submit" value="Inscription"/>
+            Entrez votre adresse postale : <input id="" type="text" name="">
+            </br>
+            Entrez votre code postal : <input id="" type="text" name="">
+            </br>
+            Entrez votre ville : <input id="" type="text" name="">
+            </br>
+            Entrez votre adresse mail : <input id="" type="text" name="">
+            </br>
+            Entrez votre mot de passe : <input id="" type="password" name="">
+            </br>
+            Re-saisissez votre mot de passe : <input id="" type="password" name="">
+            </br>
+
+            <input id="" type="submit" value="Inscription"/>
 
         </form>
-
-    </div>
+</br>
+<p>Revenir à la <a href="page1.php">page précédente</a></p>
