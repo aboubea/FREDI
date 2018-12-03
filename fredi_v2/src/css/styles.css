@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* Template CSS */
+
+html {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size : 14px;
+}
+
+h1 {
+  text-align:center;
+  color:grey;
+}
+
+p { 
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+table, th, td {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-collapse: collapse;
+}
+
+body {
+  margin-left:20px;
+}
+
+label, input {
+  display : block;
+  padding : 5px;
+}
+
+th,td {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size : 14px;
+  padding: 5px;
+  text-align:center;
+}
+
+th {
+   background-color: grey;
+   color: white; 
+}
+
+td {
+   background-color: white; 
+   color: black;
+}
+
+.commande {
+  color: blue;
+  font-weight: bold;
+}
+
+.erreur {
+  color: red;
+  font-weight: bold;
+}
+
+.reponse {
+  color: green;
+  font-weight: bold;
+}
