@@ -26,6 +26,27 @@ class AdherentDAO extends DAO {
   }
 
   /**
+   * Lecture d'un adherent par son EMAIL
+   *
+   * @param type $mail_inscrit
+   * @return \Adherent
+   */
+  function findByMail($mail_inscrit) {
+    $sql = "select * from adherent where mail_inscrit=:mail_inscrit";
+    $params = array(":mail_inscrit" => $mail_inscrit);
+    $sth = $this->executer($sql, $params);
+    $row = $sth->fetch(PDO::FETCH_ASSOC);
+    if ($row !==FALSE) {
+      $adherent = new Adherent($row);
+    } else {
+      $adherent = new Adherent();
+    }
+    // Retourne l'objet métier
+    return $adherent;
+  }
+
+
+  /**
    * Lecture de tous les adherents
    * @return \Adherent
    */
@@ -45,7 +66,7 @@ class AdherentDAO extends DAO {
    * Retourne tous les adherents identifié par un login
    * @return array \Adherent
    */
-  function findAllByLogin($email_inscrit) {
+  function findAllByLogin($mail_inscrit) {
     $sql = "select * from adherent where mail_inscrit=:mail_inscrit";
     $params = array(":mail_inscrit" => $mail_inscrit);
     $sth = $this->executer($sql, $params);
@@ -131,6 +152,7 @@ class AdherentDAO extends DAO {
     return $nb;  // Retourne le nombre de mise à jour
   }
 
+  
 }
 
 // Classe AdherentDAO

@@ -1,7 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700');
 
 
+table, th, td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-collapse: collapse;
+  }
 
+  th,td {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size : 14px;
+    padding: 5px;
+    text-align:center;
+  }
+  
+  th {
+     background-color: grey;
+     color: white; 
+  }
+  
+  td {
+     background-color: white; 
+     color: black;
+  }
+  
 
 .base {
     position: absolute;
@@ -14,6 +37,7 @@
     border-radius: 40px;
     opacity: 0.6;
     z-index: 1;
+    padding : 25px;
 }
 
 .base#1{
