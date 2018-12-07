@@ -7,7 +7,7 @@ include 'init.php';
 <body>
 
 <?php include 'menu3.php' ; //OBLIGATOIRE (Menu -> Navigation) ?>
-        
+
         <!-- Hero-Section
           ================================================== -->
 
@@ -31,7 +31,7 @@ include 'init.php';
 <p align="center">Vous êtes trésorier, cliquez <a href="page2.php">ici</a></p>
 <p align="center">Vous êtes membre du CRIB, cliquez <a href="page3.php">ici</a></p>
 <br />
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a></p>
+<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a> | <a href="insertion_ligne.php">entrez ligne de frais ?</a></p>
 
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->

@@ -2,7 +2,7 @@
 
 class motif {
 
-  private $id_ligue;
+  private $id_motif;
   private $libelle_motif;
 
 
@@ -13,35 +13,36 @@ class motif {
   }
 
   // function get & set
-  public function getId_ligue(){
-    return $this->id_ligue;
+  public function getid_motif(){
+    return $this->id_motif;
    }
-  
-   public function setId_ligue($id_ligue){
-    $this->id_ligue = $id_ligue;
+
+   public function setid_motif($id_motif){
+    $this->id_motif = $id_motif;
    }
-  
+
    public function getLibelle_motif(){
     return $this->libelle_motif;
    }
-  
+
    public function setLibelle_motif($libelle_motif){
     $this->libelle_motif = $libelle_motif;
    }
 
 // hydrateur
-  function hydrater(array $tableau) {
-    foreach ($tableau as $cle => $valeur) {
-      $methode = 'set_' . $cle;
-      if (method_exists($this, $methode)) {
-        $this->$methode($valeur);
-      }
+function hydrater(array $tableau) {
+  foreach ($tableau as $cle => $valeur) {
+    $methode = 'set' . $cle;
+    if (method_exists($this, $methode)) {
+      $this->$methode($valeur);
     }
   }
+}
 
 
 
 
 }
+
 
 ?>
