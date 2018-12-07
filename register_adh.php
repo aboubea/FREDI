@@ -24,7 +24,20 @@ $clubs = $clubDAO->findAllClubs(); //Liste des clubs
 
 <!-- DEBUT BASE ------------------------------------------------------------------------------------------------------------- -->
 
-<?php
+<!-- Verification de licence si déjà présente dans la BDD -->
+<div class="row">
+        <div class="col-xs-12">
+          <h2 align = "center">Vérifier ma licence</h2>
+          <p align = "center">Votre licence se trouve peut-être déjà dans notre base de données, cliquez sur "Tester" afin de tester votre licence.</p>
+          <p align ="center"><a class="btn btn-primary" href="#" role="button" >Tester</a></p>
+       </div>
+</div>
+
+<div class="row">
+        <div class="col-xs-12">
+          <h2 align = "center">Inscription Adhérent</h2>
+          <p class="text-danger">Si vous venez d'acquérir une nouvelle licence, remplissez les champs prévus pour l'inscription et cliquez sur "s'inscrire".</p>
+          <?php
 // Détermine si on a cliqué sur le bouton submit
 $submit = isset($_POST['submit']);
 $erreur = "";
@@ -61,24 +74,25 @@ if ($submit) {
         'mdp_inscrit'=>$mdp_hash,
         'id_club'=>$id_club
     ));
+
     // Ajoute l'enregistrement dans la BDD
     $nb = $adherentDAO->insert($adherent);
     header('Location: connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
-    exit;  // Obligatoire sinon PHP continue à exécuter le script
 
-} else {    //Si tout n'est pas remplis > erreur
+    // Obligatoire sinon PHP continue à exécuter le script
+    exit;  
+
+//Si tout n'est pas remplis > erreur
+} else {    
     $erreur = "<p align='center'><strong>Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp.</strong></p>";
 }
 }
-
-
-?>
-
-<h2 align='center'> Inscription Adhérent </h2>
-
-<?php
+// Ajout du formulaire d'inscription
     include 'forms/ADH_Inscription_Form.php';
 ?>
+
+        </div>
+</div>
 
 <p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a></p></p>
 

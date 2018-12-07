@@ -63,6 +63,6 @@ if (isset($erreur)) {
   </select>
   <br />
   
-  <input type="submit" name="submit" value="S'inscrire">
+  <input class="btn btn-primary" type="submit" name="submit" value="S'inscrire">
   
 </form>

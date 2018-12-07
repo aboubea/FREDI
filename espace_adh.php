@@ -21,11 +21,11 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
                 </div><!--hero-left-->
                 <div class="base">
 
-<!-- DEBUT BASE ------------------------------------------------------------------------------------------------------------- -->
+<!-- DEBUT BASE --------------------------------------------------------------------------------------------------------------- -->
 
 <h2 align='center'>Espace Adhérent</h2>
 
-<div class="row">
+<div class="row"> 
         <div class="col-xs-12">
           <h2>Mes informations</h2>
           
