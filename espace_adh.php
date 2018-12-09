@@ -53,7 +53,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         <div class="col-xs-12">
           <h2>Mes bordereaux</h2>
           <p>Pour lire ou modifier votre bordereau, cliquez sur "Modifier".</p>
-          <p><a class="btn btn-primary" href="#" role="button">Ajouter frais »</a>
+          <p><a class="btn btn-primary" href="insertion_ligne.php" role="button">Ajouter frais »</a>
           <a class="btn btn-primary" href="#" role="button">Modifier frais »</a>
           <a class="btn btn-primary" href="list_borderaux.php" role="button">Voir mes borderaux »</a></p>
        </div>

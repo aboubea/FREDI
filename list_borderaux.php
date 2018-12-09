@@ -3,8 +3,8 @@ include 'head.php';
 include 'init.php';
 session_start();
 $mail_inscrit = $_SESSION['mail_inscrit'];
-$adherentDAO = new AdherentDAO();
-$adherent= $adherentDAO->findByMail($mail_inscrit);
+$notefraisDAO = new NotefraisDAO();
+$note= $notefraisDAO->findby($mail_inscrit);
 ?>
 <html>
 <body>
@@ -30,6 +30,8 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
           <h3 align='center'>Sélectionner votre borderau pour le visualiser : </h3>
           
 <br />
+
+
         </div>
 </div>
 <p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a></p>

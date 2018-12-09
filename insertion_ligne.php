@@ -3,9 +3,17 @@ include 'head.php';
 include 'init.php';
 // Récupère la liste des Clubs (liste déroulante) et les Adhérents présents (pour ne pas rentrer un email déjà présent)
 $lignefraisDAO = new LignefraisDAO;
+$lignefrais = $lignefraisDAO->findAll();
 $motifDAO = new MotifDAO();
 $motifs = $motifDAO->findAll();//liste des motifs
 //$ligueDAO = new ligueDAO();
+?>
+
+<?php
+session_start();
+$mail_inscrit = $_SESSION['mail_inscrit'];
+$adherentDAO = new AdherentDAO();
+$adherent= $adherentDAO->findByMail($mail_inscrit);
 ?>
 <html>
 <body>
@@ -49,6 +57,19 @@ $motifs = $motifDAO->findAll();//liste des motifs
       ));
           // Ajoute l'enregistrement dans la BDD
           $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif);
+          
+          $ligne = $lignefraisDAO->findbydata($date_frais,$trajet_frais,$km_parcourus, $cout_peage, $cout_repas, $cout_hebergement);
+            var_dump($ligne);
+          
+         
+            $licence_adh = $adherent->getLicence_adh();
+          echo $licence_adh;
+
+        
+          
+
+
+          //$nb2 = $notefraisDAO->insert($licence_adh, $id_ligne_frais)
           //header('Location: connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
           exit;  // Obligatoire sinon PHP continue à exécuter le script
 

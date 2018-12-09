@@ -28,9 +28,31 @@ function find($id_ligne){
   return $lignefrais;
 }
 
+function findbydata($date_frais,$trajet_frais,$km_parcourus, $cout_peage, $cout_repas, $cout_hebergement){
+  $sql = "select id_ligne_frais from ligne_frais where date_frais = :date_frais and trajet_frais = :trajet_frais and km_parcourus = :km_parcourus and cout_peage = :cout_peage and cout_repas = :cout_repas and cout_hebergement = :cout_hebergement";
+  $params = array(
+      ":date_frais" => $date_frais,
+      ":trajet_frais" => $trajet_frais,
+      ":km_parcourus" => $km_parcourus,
+      ":cout_peage" => $cout_peage,
+      ":cout_repas" => $cout_repas,
+      ":cout_hebergement" => $cout_hebergement
+    );
+  $sth = $this->executer($sql, $params);
+  $row = $sth->fetchAll(PDO::FETCH_ASSOC);
+  if ($row !==FALSE) {
+    $lignefrais = new lignefrais($row);
+  } else {
+    $lignefrais = new lignefrais();
+  }
+  // Retourne l'objet métier
+  return $lignefrais;
+
+}
+
 function insert($date_frais,$trajet_frais,$km_parcourus, $cout_peage, $cout_repas, $cout_hebergement, $Id_motif){
   $sql = "insert into ligne_frais(date_frais, trajet_frais, km_parcourus, cout_peage, cout_repas, cout_hebergement, Id_motif) values (:date_frais, :trajet_frais, :km_parcourus, :cout_peage, :cout_repas, :cout_hebergement, :Id_motif)";
-    $params = array(
+  $params = array(
       ":date_frais" => $date_frais,
       ":trajet_frais" => $trajet_frais,
       ":km_parcourus" => $km_parcourus,
@@ -39,7 +61,7 @@ function insert($date_frais,$trajet_frais,$km_parcourus, $cout_peage, $cout_repa
       ":cout_hebergement" => $cout_hebergement,
       ":Id_motif" => $Id_motif
     );
-    $sth = $this->executer($sql,$params);
+    $sth = $this->executer($sql, $params);
     $nb = $sth->rowcount();
     // Retourne le nombre de mise à jour
     return $nb;
