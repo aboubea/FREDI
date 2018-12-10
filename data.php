@@ -1,6 +1,6 @@
 <?php
 include 'head.php';
-include 'init.php';
+include 'init.php'; //
 session_start();
 $mail_inscrit = $_SESSION['mail_inscrit'];
 $adherentDAO = new AdherentDAO();

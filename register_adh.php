@@ -59,7 +59,7 @@ $adherentCSVDAO = new AdherentCSVDAO;
                 <h3 align = "center">Etape 2 : Inscription d'un nouvel adhérent</h2>
             <?php
             } //Fin de vérification
-            
+             
             //Le formulaire 1 est fini
             $form_test=true;
 

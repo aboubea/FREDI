@@ -25,8 +25,8 @@ $responsables_legal = $responsable_legalDAO->findAll();
                 </div><!--hero-left-->
                 <div class="base">
 
-<!-- DEBUT BASE ------------------------------------------------------------------------------------------------------------- -->
-
+<!-- DEBUT BASE -------------------------------------------------------------------------------------------------------------- -->
+ 
 <?php
 
 // Détermine si on a cliqué sur le bouton submit

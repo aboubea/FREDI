@@ -1,7 +1,7 @@
 -- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
---
+-- 
 -- Hôte : 127.0.0.1
 -- Généré le :  lun. 10 déc. 2018 à 02:27
 -- Version du serveur :  10.1.30-MariaDB
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `fredi`
+-- Base de données :  `fredi` 
 --
 CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `fredi`;
