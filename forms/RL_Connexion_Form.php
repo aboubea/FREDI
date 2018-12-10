@@ -9,13 +9,18 @@ if (!isset($action)) {
   $action = '#';
 }
 
+if (isset($erreur)) {   
+  //Si une erreur est créée, elle s'affichera ici
+  echo $erreur;
+}
+
 ?>
 <form align="center" action="<?php echo $action; ?>" method="post">
-  <label for="mail_inscrit">Mail :</label>
-  <input type="text" name="mail_inscrit" id="mail_inscrit" value="">
+  <label for="mail_resp_leg">Mail :</label>
+  <input type="text" name="mail_resp_leg" id="mail_resp_leg" value="">
   <br />
-  <label for="mdp_inscrit">Mot de passe :</label>
-  <input type="text" name="mdp_inscrit" id="mdp_inscrit" value="">
+  <label for="mdp_resp_leg">Mot de passe :</label>
+  <input type="password" name="mdp_resp_leg" id="mdp_resp_leg" value="">
 
   <br/>
   

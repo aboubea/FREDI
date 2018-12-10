@@ -19,7 +19,7 @@ if (isset($erreur)) {
   <input type="text" name="mail_inscrit" id="mail_inscrit" value="">
   <br />
   <label for="mdp_inscrit">Mot de passe :</label>
-  <input type="text" name="mdp_inscrit" id="mdp_inscrit" value="">
+  <input type="password" name="mdp_inscrit" id="mdp_inscrit" value="">
 
   <br/>
   

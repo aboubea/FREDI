@@ -38,7 +38,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 <br />
   <?php
       
-    if (count($lignes) !== 0){
+    //if (count($lignes) !== 0){
         echo "<table align='center'>";
         echo '<tr>';
         echo '<th>ID</th>';
@@ -65,10 +65,10 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
           
         }
         echo '</table>';
-    } else {
-        echo "Vous n'avez pas encore saisie vos lignes de frais.";
+    //} else {
+      //  echo "Vous n'avez pas encore saisie vos lignes de frais.";
     
-    }
+    //}
         
           
   ?>

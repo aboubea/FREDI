@@ -69,8 +69,6 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
             $licence_adh = $adherent->getLicence_adh();
           echo '<h2>Ligne bien ajoutée</h2>';
 
-          $nb1 = $notefraisDAO->insert($licence_adh);
-
 
           $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif, $id_note_frais);
 
