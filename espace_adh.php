@@ -39,15 +39,23 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
           
           <table align='center'>
             <tr>
-                <th>Licence</th>
-                <th>Nom</th>
-                <th>Prenom</th>
+            <th>Licence : </th>
+                <th>Nom : </th>
+                <th>Prenom : </th>
+                <th>Adresse Mail : </th>
+                <th>Adresse : </th>
+                <th>Ville : </th>
+                <th>Code Postal : </th>
             </tr>
 <?php
   echo '<tr>';
   echo '<td>'.$adherent->getLicence_adh().'</td>';
   echo '<td>'.$adherent->getPrenom_adh().'</td>';
   echo '<td>'.$adherent->getNom_adh().'</td>';
+  echo '<td>'.$adherent->getMail_inscrit().'</td>';
+  echo '<td>'.$adherent->getAdresse_adh().'</td>';
+  echo '<td>'.$adherent->getVille_adh().'</td>';
+  echo '<td>'.$adherent->getCp_adh().'</td>';
   echo '</tr>';
 ?>
 </table>
