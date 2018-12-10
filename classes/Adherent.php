@@ -2,9 +2,9 @@
 
 class Adherent {
 
-private $licence_adh;
+private $licence_adh="";
 private $nom_adh;
-private $prenom_adh;
+private $prenom_adh; 
 private $sexe_adh;
 private $date_naissance_adh;
 private $adresse_adh;
