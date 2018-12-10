@@ -44,26 +44,26 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
     if (count($lignes) !== 0){
         echo "<table align='center'>";
         echo '<tr>';
-        echo '<th>ID</th>';
         echo '<th>Date</th>';
         echo '<th>Nom du Trajet</th>';
         echo '<th>Nombre de KM</th>';
         echo '<th>Cout peage</th>';
         echo '<th>Cout repas</th>';
         echo '<th>Cout hebergement</th>';
-
+        echo '<th>Modifier</th>';
+        echo '<th>Supprimer</th>';
         echo '</tr>';
         
         foreach ($lignes as $ligne) {
           echo '<tr>';
-          echo '<td>'. $ligne->getid_ligne_frais() .'</td>';
           echo '<td>'. $ligne->getdate_frais() .'</td>';
           echo '<td>'. $ligne->gettrajet_frais() .'</td>';
           echo '<td>'. $ligne->getkm_parcourus() .'</td>';
           echo '<td>'. $ligne->getcout_peage() .'</td>';
           echo '<td>'. $ligne->getcout_repas() .'</td>';
           echo '<td>'. $ligne->getcout_hebergement() .'</td>';
-
+          echo '<td><a href="modif_ligne.php?id_ligne_frais='.$ligne->getid_ligne_frais().'">Modifier</a></p></td>';
+          echo '<td><a href="delete_ligne.php?id_ligne_frais='.$ligne->getid_ligne_frais().'">Supprimer</a></p></td>';
           echo '</tr>';
           
         }
