@@ -8,8 +8,8 @@ private $prenom_resp_leg;
 private $rue_resp_leg;
 private $cp_resp_leg;
 private $ville_resp_leg;
-private $mail_inscrit;
-private $mdp_inscrit;
+private $mail_resp_leg;
+private $mdp_resp_leg;
 
 
 // function construct
@@ -68,26 +68,26 @@ public function getId_resp_leg(){
   $this->ville_resp_leg = $ville_resp_leg;
  }
 
- public function getMail_inscrit(){
-  return $this->mail_inscrit;
+ public function getMail_resp_leg(){
+  return $this->mail_resp_leg;
  }
 
- public function setMail_inscrit($mail_inscrit){
-  $this->mail_inscrit = $mail_inscrit;
+ public function setMail_resp_leg($mail_resp_leg){
+  $this->mail_resp_leg = $mail_resp_leg;
  }
 
- public function getMdp_inscrit(){
-  return $this->mdp_inscrit;
+ public function getMdp_resp_leg(){
+  return $this->mdp_resp_leg;
  }
 
- public function setMdp_inscrit($mdp_inscrit){
-  $this->mdp_inscrit = $mdp_inscrit;
+ public function setMdp_resp_leg($mdp_resp_leg){
+  $this->mdp_resp_leg = $mdp_resp_leg;
  }
 
 //hydrateur
 function hydrater(array $tableau) {
   foreach ($tableau as $cle => $valeur) {
-    $methode = 'set_' . $cle;
+    $methode = 'set' . $cle;
     if (method_exists($this, $methode)) {
       $this->$methode($valeur);
     }
