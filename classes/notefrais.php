@@ -4,7 +4,7 @@ class notefrais {
 
   private $id_note_frais;
   private $annee;
-
+  private $is_validate;
 
   function __construct(array $tableau = null) {
     if ($tableau != null) {
@@ -27,6 +27,14 @@ class notefrais {
 
    public function setannee($annee){
     $this->annee = $annee;
+   }
+
+   public function getis_validate(){
+    return $this->is_validate;
+   }
+
+   public function setis_validate($is_validate){
+    $this->is_validate = $is_validate;
    }
 
 // hydrateur
