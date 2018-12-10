@@ -1,13 +1,17 @@
 <?php
-include 'head.php'; //OBLIGATOIRE (En-tête -> CSS, Javascript...)
+include 'head.php';
 include 'init.php';
+
+session_start();
+include 'inc/user_restriction.php';
+
 ?>
 
 <html>
 <body>
 
-<?php include 'menu3.php' ; //OBLIGATOIRE (Menu -> Navigation) ?>
-
+<?php include 'menu3.php' ; ?>
+        
         <!-- Hero-Section
           ================================================== -->
 
@@ -22,17 +26,21 @@ include 'init.php';
                 <div class="base">
 
 <!-- DEBUT BASE ------------------------------------------------------------------------------------------------------------- -->
-
+<?php 
+    if (isset($_GET['deconnexion'])){
+        echo '<p align="center"><strong>Vous vous êtes déconnecté avec succès !</strong></p>';
+    }elseif(isset($_GET['private'])){
+        echo '<p align="center"><strong>Vous n\'êtes pas autorisé à accéder à cette page. Veuillez vous authentifier.</strong></p>';
+    }
+    ?>
 <h2 align="center">Bienvenue sur notre site <?php echo APPLINAME?> !</h2>
 
 <p align="center">Bienvenue sur ce site qui correspond au projet du groupe 1 SIO 18/19</p>
 <br>
-<p align="center">Vous êtes adhérents, cliquez <a href="page1.php">ici</a></p>
-<p align="center">Vous êtes trésorier, cliquez <a href="page2.php">ici</a></p>
-<p align="center">Vous êtes membre du CRIB, cliquez <a href="page3.php">ici</a></p>
-<br />
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a> | <a href="insertion_ligne.php">entrez ligne de frais ?</a></p>
-
+<p align="center">Vous êtes adhérents, cliquez <a href="connexion_adh.php">ici</a></p>
+<p align="center">Vous êtes le responsable légal, cliquez <a href="connexion_resp_leg.php">ici</a></p>
+<p align="center">Vous êtes trésorier, cliquez <a href="#">ici</a></p>
+<p align="center">Vous êtes membre du CRIB, cliquez <a href="#">ici</a></p>
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
             </div>
@@ -44,7 +52,7 @@ include 'init.php';
 include 'logo.php';
 
 include 'team.php';
-include 'footer.php';//OBLIGATOIRE (Pied de page -> script js...)
+include 'footer.php';
 ?>
 
 </body>
