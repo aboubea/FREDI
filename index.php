@@ -25,13 +25,13 @@ include 'init.php';
 
 <h2 align="center">Bienvenue sur notre site <?php echo APPLINAME?> !</h2>
 
-<p align="center">Bienvenue sur ce site qui correspond au projet du groupe 1 SIO 18/19</p>
+<p align="center">Bienvenue sur ce site qui correspond au projet du groupe 1 SIO2 18/19</p>
 <br>
 <p align="center">Vous êtes adhérents, cliquez <a href="page1.php">ici</a></p>
 <p align="center">Vous êtes trésorier, cliquez <a href="page2.php">ici</a></p>
 <p align="center">Vous êtes membre du CRIB, cliquez <a href="page3.php">ici</a></p>
 <br />
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a> | <a href="insertion_ligne.php">entrez ligne de frais ?</a></p>
+<p align="center"><a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a></p>
 
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->

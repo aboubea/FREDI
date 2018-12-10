@@ -7,6 +7,11 @@ $lignefrais = $lignefraisDAO->findAll();
 $motifDAO = new MotifDAO();
 $motifs = $motifDAO->findAll();//liste des motifs
 //$ligueDAO = new ligueDAO();
+
+
+$notefraisDAO = new NotefraisDAO;
+$notefrais = $notefraisDAO->findAll();
+
 ?>
 
 <?php
@@ -45,6 +50,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
       $cout_repas = isset($_POST['cout_repas']) ? $_POST['cout_repas'] : "";
       $cout_hebergement = isset($_POST['cout_hebergement']) ? $_POST['cout_hebergement'] : "";
       $id_motif = isset($_POST['Id_motif']) ? $_POST['Id_motif'] : "";
+      $id_note_frais = $_GET['id_note_frais'];
 
       $lignefrais =  new lignefrais(array(
         ":date_frais" => $date_frais,
@@ -53,17 +59,22 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         ":cout_peage" => $cout_peage,
         ":cout_repas" => $cout_repas,
         ":cout_hebergement" => $cout_hebergement,
-        ":Id_motif" => $id_motif
+        ":Id_motif" => $id_motif,
+        ":id_note_frais" => $id_note_frais
       ));
           // Ajoute l'enregistrement dans la BDD
-          $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif);
           
-          $ligne = $lignefraisDAO->findbydata($date_frais,$trajet_frais,$km_parcourus, $cout_peage, $cout_repas, $cout_hebergement);
-            var_dump($ligne);
           
          
             $licence_adh = $adherent->getLicence_adh();
-          echo $licence_adh;
+          echo '<h2>Ligne bien ajoutée</h2>';
+
+          $nb1 = $notefraisDAO->insert($licence_adh);
+
+
+          $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif, $id_note_frais);
+
+
 
         
           
