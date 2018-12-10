@@ -40,16 +40,15 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 if (count($notes) !== 0){
     echo "<table align='center'>";
     echo '<tr>';
-    echo '<th>ID</th>';
     echo '<th>Année</th>';
-    echo '<th>Is_Validate?</th>';
+    echo '<th>Est validé ?</th>';
     echo '<th>Visualiser</th>';
     echo '<th>Ajouter ligne de frais</th>';
+    echo '<th> Exemplaire en PDF</th>';
     echo '</tr>';
     
     foreach ($notes as $note) {
       echo '<tr>';
-      echo '<td>'.$note->getid_note_frais().'</td>';
       echo '<td>'.$note->getannee().'</td>';
       $validate = $note->getis_validate();
       if ($validate == 0)
@@ -60,6 +59,7 @@ if (count($notes) !== 0){
       }
       echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
       echo '<td><a href="insertion_ligne.php?id_note_frais='.$note->getid_note_frais().'">Ajouter</a></td>';
+      echo '<td></td>';
       echo '</tr>';
       
     }

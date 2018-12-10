@@ -67,7 +67,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         echo '</table>';
     } else {
       echo '<p align="center">Vous n\'avez pas encore saisie vos lignes de frais.</p>';
-      echo '<p align="center"><a class="btn btn-primary" href="insertion_ligne.php" role="button">Ajouter une première ligne de frais »</a></p>';
+      echo '<p align="center"><a class="btn btn-primary" href="insertion_ligne.php?id_note_frais='.$id_note_frais.'" role="button">Ajouter une première ligne de frais »</a></p>';
     }
         
           

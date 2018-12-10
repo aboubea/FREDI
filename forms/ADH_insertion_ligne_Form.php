@@ -37,5 +37,5 @@ if (isset($erreur)) {
   </select>
   <br/>
     <br>
-    <input type="submit" name="submit" value="Enregister" class="button">
+    <input type="submit" name="submit" value="Enregister" class="btn btn-primary">
 </form>

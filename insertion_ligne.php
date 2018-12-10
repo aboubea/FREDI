@@ -1,13 +1,12 @@
 <?php
 include 'head.php';
 include 'init.php';
-// Récupère la liste des Clubs (liste déroulante) et les Adhérents présents (pour ne pas rentrer un email déjà présent)
+//
 $lignefraisDAO = new LignefraisDAO;
 $lignefrais = $lignefraisDAO->findAll();
 $motifDAO = new MotifDAO();
-$motifs = $motifDAO->findAll();//liste des motifs
-//$ligueDAO = new ligueDAO();
-
+//liste des motifs
+$motifs = $motifDAO->findAll();
 
 $notefraisDAO = new NotefraisDAO;
 $notefrais = $notefraisDAO->findAll();
@@ -17,6 +16,7 @@ $notefrais = $notefraisDAO->findAll();
 <?php
 session_start();
 $mail_inscrit = $_SESSION['mail_inscrit'];
+//On récupère les détails de l'adhérent connecté (sa licence)
 $adherentDAO = new AdherentDAO();
 $adherent= $adherentDAO->findByMail($mail_inscrit);
 ?>
@@ -51,7 +51,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
       $cout_repas = isset($_POST['cout_repas']) ? $_POST['cout_repas'] : "";
       $cout_hebergement = isset($_POST['cout_hebergement']) ? $_POST['cout_hebergement'] : "";
       $id_motif = isset($_POST['Id_motif']) ? $_POST['Id_motif'] : "";
-      $id_note_frais = $_GET['id_note_frais'];
+      $id_note_frais = $_GET['id_note_frais'] ? $_GET['id_note_frais'] : "";
 
       $lignefrais =  new lignefrais(array(
         ":date_frais" => $date_frais,
@@ -64,17 +64,14 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         ":id_note_frais" => $id_note_frais
       ));
           // Ajoute l'enregistrement dans la BDD
-         
-            $licence_adh = $adherent->getLicence_adh();
-          echo '<h2>Ligne bien ajoutée</h2>';
+         $licence_adh = $adherent->getLicence_adh();
 
-
-          $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif, $id_note_frais);
+         $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif, $id_note_frais);
 
           //$nb2 = $notefraisDAO->insert($licence_adh, $id_ligne_frais)
-          //header('Location: connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
-          exit;  // Obligatoire sinon PHP continue à exécuter le script
-
+          header('Location: lire_ligne.php?ligne=1&id_note_frais='.$id_note_frais.'');
+          // Obligatoire sinon PHP continue à exécuter le script
+          exit;  
   } else {
       //$erreur = "<p align='center'><strong>Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp.</strong></p>";
   }
@@ -84,7 +81,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
   ?>
 
   <p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a></p>
-  
+
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
 </div>
         </div><!--hero-->
