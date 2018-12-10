@@ -29,14 +29,15 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
   ================================================== -->
   <div class="hero row">
       <div class="hero-right col-sm-6 col-sm-6">
-          <h1 class="header-headline bold">Adhérent<br></h1>
-          <h4 class="header-running-text light"> Inscrivez-vous ></h4>
+          <h1 class="header-headline bold">Insertion<br></h1>
+          <h4 class="header-running-text light">Lignes de frais ></h4>
           </div><!--hero-left-->
           <div class="base">
 
 
 <!-- DEBUT BASE ------------------------------------------------------------------------------------------------------------- -->
 
+<h2 align='center'>Insertion d'une ligne de frais</h2>
 
   <?php
 
@@ -63,20 +64,12 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         ":id_note_frais" => $id_note_frais
       ));
           // Ajoute l'enregistrement dans la BDD
-          
-          
          
             $licence_adh = $adherent->getLicence_adh();
           echo '<h2>Ligne bien ajoutée</h2>';
 
 
           $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif, $id_note_frais);
-
-
-
-        
-          
-
 
           //$nb2 = $notefraisDAO->insert($licence_adh, $id_ligne_frais)
           //header('Location: connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
@@ -89,3 +82,21 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
   // Ajout du formulaire d'inscription
       include 'forms/ADH_insertion_ligne_Form.php';
   ?>
+
+  <p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a></p>
+  
+<!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
+</div>
+        </div><!--hero-->
+
+    </div> <!-- hero-container -->
+</div><!--hero-background-->
+
+<?php
+include 'logo.php';
+include 'team.php';
+include 'footer.php';
+?>
+
+</body>
+</html>

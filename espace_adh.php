@@ -37,22 +37,18 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         <div class="col-xs-12">
           <h3>Mes informations</h3>
           
-          <table align='center'>
+          <table>
             <tr>
-            <th>Licence : </th>
-                <th>Nom : </th>
-                <th>Prenom : </th>
-                <th>Adresse Mail : </th>
-                <th>Adresse : </th>
-                <th>Ville : </th>
-                <th>Code Postal : </th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
             </tr>
 <?php
   echo '<tr>';
-  echo '<td>'.$adherent->getLicence_adh().'</td>';
-  echo '<td>'.$adherent->getPrenom_adh().'</td>';
   echo '<td>'.$adherent->getNom_adh().'</td>';
-  echo '<td>'.$adherent->getMail_inscrit().'</td>';
+  echo '<td>'.$adherent->getPrenom_adh().'</td>';
   echo '<td>'.$adherent->getAdresse_adh().'</td>';
   echo '<td>'.$adherent->getVille_adh().'</td>';
   echo '<td>'.$adherent->getCp_adh().'</td>';
@@ -60,7 +56,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 ?>
 </table>
 <br />
-          <p class="text-danger">Pour accéder à vos informations personnelles, cliquez sur "Visualiser".</p>
+          <p class="text-danger">Pour accéder à toutes vos informations personnelles, cliquez sur "Visualiser".</p>
           <p align='center'><a class="btn btn-primary" href="data.php" role="button">Visualiser</a></p>
         </div>
 </div>
