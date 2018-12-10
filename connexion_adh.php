@@ -1,6 +1,9 @@
 <?php
 include 'head.php';
 include 'init.php';
+
+session_start();
+include 'inc/user_restriction.php';
 ?>
 <html>
 <body>
@@ -26,10 +29,12 @@ $erreur = "";
 
 // Formulaire soumi
 if ($submit) {
+    
     // Toutes les données sont saisies
     if (!empty($_POST['mail_inscrit']) and !empty($_POST['mdp_inscrit'])) {
+        
         // Récupère les données du formulaire
-        $mail_inscrit = isset($_POST['mail_inscrit']) ? $_POST['mail_inscrit'] : '';     //On récupère les données du formulaire (mail_inscrit et mdp_inscrit)
+        $mail_inscrit = isset($_POST['mail_inscrit']) ? $_POST['mail_inscrit'] : '';
         $mdp_inscrit = isset($_POST['mdp_inscrit']) ? $_POST['mdp_inscrit'] : '';
 
         //-- On instencie le DAO de Adhérent --//
