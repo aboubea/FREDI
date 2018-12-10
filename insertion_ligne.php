@@ -69,7 +69,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
          $nb = $lignefraisDAO->insert($date_frais,$trajet_frais,$km_parcourus,$cout_peage,$cout_repas,$cout_hebergement,$id_motif, $id_note_frais);
 
           //$nb2 = $notefraisDAO->insert($licence_adh, $id_ligne_frais)
-          header('Location: lire_ligne.php?ligne=1&id_note_frais='.$id_note_frais.'');
+          header('Location: lire_ligne.php?ligne_ajoutee=1&id_note_frais='.$id_note_frais.'');
           // Obligatoire sinon PHP continue à exécuter le script
           exit;  
   } else {

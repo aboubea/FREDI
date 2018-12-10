@@ -23,8 +23,8 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
   ================================================== -->
   <div class="hero row">
       <div class="hero-right col-sm-6 col-sm-6">
-          <h1 class="header-headline bold">Lecture<br></h1>
-          <h4 class="header-running-text light">Lignes de frais ></h4>
+          <h1 class="header-headline bold">Vos frais<br></h1>
+          <h4 class="header-running-text light">Licencié : <?php echo $adherent->getPrenom_adh() . ' ' . $adherent->getNom_adh() ;?></h4>
           </div><!--hero-left-->
           <div class="base">
 
@@ -37,7 +37,10 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
           
 <br />
   <?php
-      
+    if (isset($_GET["ligne_ajoutee"])){
+      echo '<p align="center"><strong>Vos frais ont bien été ajoutés !</strong></p>';
+    }
+
     if (count($lignes) !== 0){
         echo "<table align='center'>";
         echo '<tr>';

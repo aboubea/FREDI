@@ -22,8 +22,8 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Espace Adhérent </h1>
-                <h4 class="header-running-text light"><?php echo "Test" ;?> ></h4>
+                <h1 class="header-headline bold">Vos bordereaux </h1>
+                <h4 class="header-running-text light">Licencié : <?php echo $adherent->getPrenom_adh() . ' ' . $adherent->getNom_adh() ;?></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
