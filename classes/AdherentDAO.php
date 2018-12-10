@@ -9,18 +9,21 @@
 class AdherentDAO extends DAO {
 
   /**
-   * Lecture d'un adherent par son ID
+   * Lecture d'un adherent par sa licence
    *
-   * @param type $id_adherent
+   * @param type $licence_adh
    * @return \Adherent
    */
-  function find($id_adherent) {
-    $sql = "select * from adherent where id_adh=:id_adh";
-    $params = array(":id_adh" => $id_adh);
+  function find($licence_adh) {
+    $sql = "select * from adherent where licence_adh=:licence_adh";
+    $params = array(":licence_adh" => $licence_adh);
     $sth = $this->executer($sql, $params);
     $row = $sth->fetch(PDO::FETCH_ASSOC);
-    //TODO : si le fetch ne retourne rien, $row=false et ça plante l'hydrateur
-    $adherent = new Adherent($row);
+    if ($row !==FALSE) {
+      $adherent = new Adherent($row);
+    } else {
+      $adherent = new Adherent();
+    }
     // Retourne l'objet métier
     return $adherent;
   }
@@ -44,7 +47,7 @@ class AdherentDAO extends DAO {
     // Retourne l'objet métier
     return $adherent;
   }
-
+ 
 
   /**
    * Lecture de tous les adherents
@@ -62,42 +65,6 @@ class AdherentDAO extends DAO {
     return $tableau;
   }
 
-  /**
-   * Retourne tous les adherents identifié par un login
-   * @return array \Adherent
-   */
-  function findAllByLogin($mail_inscrit) {
-    $sql = "select * from adherent where mail_inscrit=:mail_inscrit";
-    $params = array(":mail_inscrit" => $mail_inscrit);
-    $sth = $this->executer($sql, $params);
-    $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-    $tableau = array();
-    foreach ($rows as $row) {
-      $tableau[] = new Adherent($row);
-    }
-    // Retourne un tableau d'objets métier
-    return $tableau;
-  }
-
-  /**
-  * Retourne tous les details de l'adherent identifié par son email
-  * @return array \Adherent
-  */
- function  finAllByMailAndMdp($mail_inscrit,$mdp_hache) {
-   $sql = "select * from adherent where mail_inscrit=:mail_inscrit AND mdp_inscrit=:mdp_hache";
-   $params = array(
-     ":mail_inscrit" => $mail_inscrit,
-     ":mdp_hache" => $mdp_hache
-    );
-   $sth = $this->executer($sql, $params);
-   $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-   $tableau = array();
-   foreach ($rows as $row) {
-     $tableau[] = new Adherent($row);
-   }
-   // Retourne un tableau d'objets métier
-   return $tableau;
- }
 
   /**
   * Vérifie si l'utilisateur est bien inscrit
@@ -126,6 +93,29 @@ class AdherentDAO extends DAO {
       return false ;
     }
   }
+
+
+/**
+* Lecture de tous les adherent(s) mineur d\'un responsable legal
+* @param int $id_resp_leg l'ID du responsable legal
+* @return array \Adherent
+*/
+
+function findAllByIdRespLeg($id_resp_leg) {
+  $sql = "select * from adherent where id_resp_leg=:id_resp_leg";
+  $params = array(
+    ":id_resp_leg" => $id_resp_leg
+  );
+  $sth = $this->executer($sql, $params);
+  $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+  $tableau = array();
+  foreach ($rows as $row) {
+    $tableau[] = new Adherent($row);
+  }
+  // Retourne un tableau d\'objet métier
+  return $tableau;
+}
+
 
   /**
    * Ajoute un adherents
