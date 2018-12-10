@@ -39,11 +39,10 @@
                 <button class="header-btn">Deconnexion</button>
                 </a>
 
-                <!-- Bordereaux de l'adhérent
-                <a href=bordereaux_adh.php">
+                <!-- Bordereaux de l'adhérent -->
+                <a href="list_borderaux.php">
                 <button class="header-btn">Mes bordereaux</button>
                 </a>
-                -->
 
                 <!-- Espace Adherent -->
                 <a href="espace_adh.php">

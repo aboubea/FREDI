@@ -23,8 +23,8 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
   ================================================== -->
   <div class="hero row">
       <div class="hero-right col-sm-6 col-sm-6">
-          <h1 class="header-headline bold">Adhérent<br></h1>
-          <h4 class="header-running-text light"> Inscrivez-vous ></h4>
+          <h1 class="header-headline bold">Lecture<br></h1>
+          <h4 class="header-running-text light">Lignes de frais ></h4>
           </div><!--hero-left-->
           <div class="base">
 
@@ -33,12 +33,12 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 
 <div class="row"> 
         <div class="col-xs-12">
-          <h3 align='center'>Visualiser ses lignes de frais : </h3>
+          <h3 align='center'>Lignes de frais du bordereau :</h3>
           
 <br />
   <?php
       
-    //if (count($lignes) !== 0){
+    if (count($lignes) !== 0){
         echo "<table align='center'>";
         echo '<tr>';
         echo '<th>ID</th>';
@@ -65,10 +65,10 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
           
         }
         echo '</table>';
-    //} else {
-      //  echo "Vous n'avez pas encore saisie vos lignes de frais.";
-    
-    //}
+    } else {
+      echo '<p align="center">Vous n\'avez pas encore saisie vos lignes de frais.</p>';
+      echo '<p align="center"><a class="btn btn-primary" href="insertion_ligne.php" role="button">Ajouter une première ligne de frais »</a></p>';
+    }
         
           
   ?>
