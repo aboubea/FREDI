@@ -33,47 +33,17 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 
 <div class="row"> 
         <div class="col-xs-12">
-          <h3 align='center'>Sélectionner votre borderau pour le visualiser : </h3>
-          
+          <h4 align='center'>Vous avez créer votre premier bordereau, cliquez ci-dessous pour le visualiser ou l'éditer : </h4>
+          <p align = 'center'><a class="btn btn-primary" href="list_borderaux.php" role="button">Voir mes borderaux »</a></p>
+
 <br />
 <?php
-if (count($notes) !== 0){
-    echo "<table align='center'>";
-    echo '<tr>';
-    echo '<th>ID</th>';
-    echo '<th>Année</th>';
-    echo '<th>Is_Validate?</th>';
-    echo '<th>Visualiser</th>';
-    echo '<th>Ajouter ligne de frais</th>';
-    echo '</tr>';
-    
-    foreach ($notes as $note) {
-      echo '<tr>';
-      echo '<td>'.$note->getid_note_frais().'</td>';
-      echo '<td>'.$note->getannee().'</td>';
-      $validate = $note->getis_validate();
-      if ($validate == 0)
-      {
-          echo '<td>Non</td>';
-      } else {
-          echo '<td>Oui</td>';
-      }
-      echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
-      echo '<td><a href="insertion_ligne.php?id_note_frais='.$note->getid_note_frais().'">Ajouter</a></td>';
-      echo '</tr>';
-      
-    }
-    echo '</table>';
-} else {
-    echo 'Voulez vous créer votre premier borderau ?';
-    echo'</br>';echo'</br>';
-    echo '<p><a class="btn btn-primary" href="create_bordereau.php" role="button">Créer un bordereau »</a></p>';
-
-}
-
+ $licence_adh = $adherent->getLicence_adh();
+          $nb1 = $notefraisDAO->insert($licence_adh);
 ?>
 
-</br>
+<p>Revenir à la page d'<a href="index.php">accueil</a></p>
+
 
         </div>
 </div>

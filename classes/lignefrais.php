@@ -81,7 +81,7 @@ function getannee() {
 
 function hydrater(array $tableau) {
   foreach ($tableau as $cle => $valeur) {
-    $methode = 'set_' . $cle;
+    $methode = 'set' . $cle;
     if (method_exists($this, $methode)) {
       $this->$methode($valeur);
     }
