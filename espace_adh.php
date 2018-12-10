@@ -1,8 +1,16 @@
 <?php
 include 'head.php';
 include 'init.php';
+
+//On démarre la session
 session_start();
-$mail_inscrit = $_SESSION['mail_inscrit'];
+
+//On récupère le mail de l'adhérent (pour trouver ses details personnels)
+if (isset($_SESSION['mail_inscrit'])) {
+  $mail_inscrit = $_SESSION['mail_inscrit'];
+}else{
+header('Location:index.php?private=1');
+}
 $adherentDAO = new AdherentDAO();
 $adherent= $adherentDAO->findByMail($mail_inscrit);
 ?>
@@ -27,7 +35,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 
 <div class="row"> 
         <div class="col-xs-12">
-          <h2><a href = "data.php">Mes informations</a></h2>
+          <h3>Mes informations</h3>
           
           <table>
             <tr>
@@ -44,8 +52,8 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 ?>
 </table>
 <br />
-          <p class="text-danger">Pour accéder à vos informations personnelles, cliquez ici.</p>
-          <p><a class="btn btn-primary" href="data.php" role="button">Mes Infos</a></p>
+          <p class="text-danger">Pour modifier vos informations personnelles, cliquez sur "Modifier".</p>
+          <p><a class="btn btn-primary" href="modif_adh.php" role="button">Modifier</a></p>
         </div>
 </div>
 
@@ -58,7 +66,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
           <a class="btn btn-primary" href="list_borderaux.php" role="button">Voir mes borderaux »</a></p>
        </div>
 </div>
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a></p>
+
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
             </div>
