@@ -37,7 +37,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         <div class="col-xs-12">
           <h3>Mes informations</h3>
           
-          <table>
+          <table align='center'>
             <tr>
                 <th>Licence</th>
                 <th>Nom</th>
@@ -52,18 +52,16 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 ?>
 </table>
 <br />
-          <p class="text-danger">Pour modifier vos informations personnelles, cliquez sur "Modifier".</p>
-          <p><a class="btn btn-primary" href="modif_adh.php" role="button">Modifier</a></p>
+          <p class="text-danger">Pour accéder à vos informations personnelles, cliquez sur "Visualiser".</p>
+          <p align='center'><a class="btn btn-primary" href="data.php" role="button">Visualiser</a></p>
         </div>
 </div>
 
 <div class="row">
         <div class="col-xs-12">
           <h2>Mes bordereaux</h2>
-          <p>Pour lire ou modifier votre bordereau, cliquez sur "Modifier".</p>
-          <p><a class="btn btn-primary" href="insertion_ligne.php" role="button">Ajouter frais »</a>
-          <a class="btn btn-primary" href="#" role="button">Modifier frais »</a>
-          <a class="btn btn-primary" href="list_borderaux.php" role="button">Voir mes borderaux »</a></p>
+          <p>Pour lire ou éditer votre bordereau, cliquez sur <strong>"Voir mes borderaux"</strong>.</p>
+          <p align='center'><a class="btn btn-primary" href="list_borderaux.php" role="button">Voir mes borderaux »</a></p>
        </div>
 </div>
 

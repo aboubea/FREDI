@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 10 déc. 2018 à 13:39
+-- Généré le :  lun. 10 déc. 2018 à 14:02
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -274,15 +274,16 @@ INSERT INTO `motif` (`id_motif`, `libelle_motif`) VALUES
 CREATE TABLE `note_frais` (
   `id_note_frais` int(11) NOT NULL,
   `licence_adh` varchar(25) NOT NULL,
-  `annee` int(11) DEFAULT NULL
+  `annee` int(11) DEFAULT NULL,
+  `is_valdidate` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `note_frais`
 --
 
-INSERT INTO `note_frais` (`id_note_frais`, `licence_adh`, `annee`) VALUES
-(1, '140506071023', 2018);
+INSERT INTO `note_frais` (`id_note_frais`, `licence_adh`, `annee`, `is_valdidate`) VALUES
+(1, '140506071023', 2018, 0);
 
 -- --------------------------------------------------------
 
@@ -366,6 +367,12 @@ ALTER TABLE `adherent_csv`
 ALTER TABLE `club`
   ADD PRIMARY KEY (`id_club`),
   ADD KEY `Club_Ligue_FK` (`id_ligue`);
+
+--
+-- Index pour la table `indemnite`
+--
+ALTER TABLE `indemnite`
+  ADD PRIMARY KEY (`annee`);
 
 --
 -- Index pour la table `ligne_frais`

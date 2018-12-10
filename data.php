@@ -29,7 +29,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         <div class="col-xs-12">
           <h2><a href = "data.php">Mes informations</a></h2>
           
-          <table>
+          <table align='center'>
             <tr>
                 <th>Licence : </th>
                 <th>Nom : </th>
