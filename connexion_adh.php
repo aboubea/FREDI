@@ -1,6 +1,6 @@
 <?php
 include 'head.php';
-include 'init.php';
+include 'init.php'; 
 
 session_start();
 include 'inc/user_restriction.php';
