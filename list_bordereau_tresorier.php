@@ -69,7 +69,7 @@ if (count($notes) !== 0){
       {
           echo '<td><a href = "valider_tresorier.php?id_note_frais='.$note->getid_note_frais().'">Valider</a></td>';
       } else {
-          echo '<td>Oui</td>';
+          echo '<td><a href = "unvalidate_tresorier.php?id_note_frais='.$note->getid_note_frais().'">Dé-Valider</a></td>';
       }
       echo '<td><a href="">Lien en PDF</a></td>';
       echo '</tr>';
@@ -77,10 +77,7 @@ if (count($notes) !== 0){
     }
     echo '</table>';
 } else {
-    echo 'Voulez vous créer votre premier borderau ?';
-    echo'</br>';echo'</br>';
-    echo '<p><a class="btn btn-primary" href="create_bordereau.php" role="button">Créer un bordereau »</a></p>';
-
+    echo 'Aucune ligne de frais saisies';
 }
 
 ?>

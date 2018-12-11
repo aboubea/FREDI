@@ -38,7 +38,6 @@ include 'inc/user_restriction.php';
 <p align="center">Vous êtes adhérents, cliquez <a href="connexion_adh.php">ici</a></p>
 <p align="center">Vous êtes le responsable légal, cliquez <a href="connexion_resp_leg.php">ici</a></p>
 <p align="center">Vous êtes trésorier, cliquez <a href="connexion_tresorier.php">ici</a></p>
-<p align="center">Vous êtes membre du CRIB, cliquez <a href="#">ici</a></p>
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
             </div>

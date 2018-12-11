@@ -94,11 +94,11 @@
     }elseif(isset($_SESSION['mail_tresorier'])){
         ?>
 
-            <!-- Se deconnecter
+            
             <a href="deconnexion.php">
             <button class="header-btn">Deconnexion</button>
             </a>
-            -->
+            
 
             <!-- Gestion des clubs (ajouts / suppressions)
             <a href=espace_club.php">
@@ -118,11 +118,11 @@
             </a>
             -->
 
-            <!-- Espace Tresorier
+           
             <a href="espace_tresorier.php">
                 <button class="header-btn">Espace Personnel</button>
             </a>
-            -->
+            
             
         <?php
         //MENU VISITEUR
@@ -130,7 +130,7 @@
         ?>
             <!-- Espace Administration -->
             <a href="#">
-                <button class="header-btn">Espace Administration</button>
+                <button class="header-btn">Espace Trésorier</button>
             </a>
             
             <!-- Responsable legal -->

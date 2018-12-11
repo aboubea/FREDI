@@ -23,6 +23,35 @@ class TresorierDAO extends DAO {
     return $tableau;
   }
 
+  function validate($id_note_frais)
+  {
+    $sql = "update note_frais 
+            set is_validate = 1  
+            where id_note_frais = :id_note_frais";
+              try {
+                  $sth = $this->pdo->prepare($sql);
+                  $sth->execute(array(":id_note_frais" => $id_note_frais));
+              } catch (PDOException $e) {
+                  throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+              }
+              return 1;
+  }
+
+  function unvalidate($id_note_frais)
+  {
+    $sql = "update note_frais 
+            set is_validate = 0  
+            where id_note_frais = :id_note_frais";
+              try {
+                  $sth = $this->pdo->prepare($sql);
+                  $sth->execute(array(":id_note_frais" => $id_note_frais));
+              } catch (PDOException $e) {
+                  throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+              }
+  }
+
+  
+
   function findByMail($mail_tresorier) {
     $sql = "select * from tresorier where mail_tresorier=:mail_tresorier";
     $params = array(":mail_tresorier" => $mail_tresorier);
