@@ -39,7 +39,8 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 <br />
 <?php
  $licence_adh = $adherent->getLicence_adh();
-          $nb1 = $notefraisDAO->insert($licence_adh);
+ $id_club = $adherent->getid_club();
+          $nb1 = $notefraisDAO->insert($licence_adh, $id_club);
 ?>
 
 <p>Revenir à la page d'<a href="index.php">accueil</a></p>

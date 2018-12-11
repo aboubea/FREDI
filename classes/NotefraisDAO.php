@@ -33,10 +33,11 @@ class NotefraisDAO extends DAO {
         return $tableau;
       } */
     
-    function insert($licence_adh){
-        $sql = "insert into note_frais (licence_adh, annee) values (:licence_adh, YEAR(CURRENT_DATE))";
+    function insert($licence_adh, $id_club){
+        $sql = "insert into note_frais (licence_adh, annee, id_club) values (:licence_adh, YEAR(CURRENT_DATE), :id_club)";
 
-        $params = array(":licence_adh" => $licence_adh);
+        $params = array(":licence_adh" => $licence_adh,
+                        ":id_club" => $id_club);
         $sth = $this->executer($sql, $params);
         $nb = $sth->rowcount();
         // Retourne le nombre de mise à jour

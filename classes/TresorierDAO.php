@@ -8,16 +8,16 @@
 
 class TresorierDAO extends DAO {
 
-  function find_notes($id_note_frais){
-    $sql = "select * from note_frais 
-            where note_frais.id_note_frais = tresorier.id_note_frais 
-            and tresorier.id_note_frais =:id_note_frais";
-    $params = array(":id_note_frais" => $id_note_frais);
+  function find_notes($id_club){
+    $sql = "select * 
+            from note_frais 
+            where id_club = :id_club";
+    $params = array(":id_club" => $id_club);
     $sth = $this->executer($sql, $params);
     $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
     $tableau = array();
     foreach ($rows as $row) {
-      $tableau[] = new lignefrais($row);
+      $tableau[] = new notefrais($row);
     }
     // Retourne un tableau d'objet métier
     return $tableau;

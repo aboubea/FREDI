@@ -116,6 +116,31 @@ function findAllByIdRespLeg($id_resp_leg) {
   return $tableau;
 }
 
+  /**
+   * Ajoute un adherents
+   * @param Adherent $adherent
+   * @return type
+   */
+  function insert_adh($adherent) {
+    $sql = "insert into adherent (licence_adh, nom_adh, prenom_adh, sexe_adh, date_naissance_adh, adresse_adh, cp_adh, ville_adh, mail_inscrit, mdp_inscrit, id_club) values (:licence_adh, :nom_adh, :prenom_adh, :sexe_adh, :date_naissance_adh, :adresse_adh, :cp_adh, :ville_adh, :mail_inscrit, :mdp_inscrit, :id_club)";
+    $params = array(
+      ":licence_adh"=>$adherent->getLicence_adh(),
+      ":nom_adh"=>$adherent->getNom_adh(),
+      ":prenom_adh"=>$adherent->getPrenom_adh(),
+      ":sexe_adh"=>$adherent->getSexe_adh(),
+      ":date_naissance_adh"=>$adherent->getDate_naissance_adh(),
+      ":adresse_adh"=>$adherent->getAdresse_adh(),
+      ":cp_adh"=>$adherent->getCp_adh(),
+      ":ville_adh"=>$adherent->getVille_adh(),
+      ":mail_inscrit"=>$adherent->getMail_inscrit(),
+      ":mdp_inscrit"=>$adherent->getMdp_inscrit(),
+      ":id_club"=>$adherent->getId_club()
+    );
+    $sth = $this->executer($sql, $params);
+    $nb = $sth->rowcount();
+    return $nb;  // Retourne le nombre de mise à jour
+  }
+
 
   /**
    * Ajoute un adherents
