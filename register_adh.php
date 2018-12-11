@@ -133,11 +133,11 @@ if ($submit) {
     exit;  
     //Si l'adhérent n'est pas majeur on le redirige
 } else {
-    echo "<p align='center'><strong>Vous devez être majeur !</strong> Un responsable legal doit prendre en charge votre inscription.</p>";
+    echo "<p align='center'><strong><i class='fas fa-exclamation-triangle'></i> Vous devez être majeur !</strong> Un responsable legal doit prendre en charge votre inscription. </p><i class='fas fa-exclamation-triangle'></i>";
 }
 //Si tout n'est pas remplis > erreur
 } else {    
-    $erreur = "<p align='center'><strong>Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp.</strong></p>";
+    $erreur = "<p align='center'><strong><i class='fas fa-exclamation-triangle'></i> Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp. </strong><i class='fas fa-exclamation-triangle'></i></p>";
 }
 }
 
