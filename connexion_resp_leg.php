@@ -53,8 +53,7 @@ if ($submit) {
             
             //Si l'email et le mdp ne correspondent pas
         } else {
-            echo $mdp_resp_leg;
-            $responsable_legal->is_bug($mail_resp_leg, $mdp_resp_leg);
+            //$responsable_legal->is_bug($mail_resp_leg, $mdp_resp_leg);
             $erreur = "<p align='center'><strong>Vous avez saisi un mauvais mot de passe ou email, veuillez réessayer svp.</strong></p>";
         }
         //Si tout n'est pas remplis --> erreur

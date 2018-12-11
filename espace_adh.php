@@ -24,8 +24,8 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Espace Adhérent </h1>
-                <h4 class="header-running-text light"><?php echo "Test" ;?> ></h4>
+                <h1 class="header-headline bold">Votre Espace</h1>
+                <h4 class="header-running-text light">Licencié : <?php echo $adherent->getPrenom_adh() . ' ' . $adherent->getNom_adh() ;?></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
@@ -37,23 +37,27 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         <div class="col-xs-12">
           <h3>Mes informations</h3>
           
-          <table align='center'>
+          <table>
             <tr>
-                <th>Licence</th>
                 <th>Nom</th>
                 <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
             </tr>
 <?php
   echo '<tr>';
-  echo '<td>'.$adherent->getLicence_adh().'</td>';
-  echo '<td>'.$adherent->getPrenom_adh().'</td>';
   echo '<td>'.$adherent->getNom_adh().'</td>';
+  echo '<td>'.$adherent->getPrenom_adh().'</td>';
+  echo '<td>'.$adherent->getAdresse_adh().'</td>';
+  echo '<td>'.$adherent->getVille_adh().'</td>';
+  echo '<td>'.$adherent->getCp_adh().'</td>';
   echo '</tr>';
 ?>
 </table>
 <br />
-          <p class="text-danger">Pour accéder à vos informations personnelles, cliquez sur "Visualiser".</p>
-          <p align='center'><a class="btn btn-primary" href="data.php" role="button">Visualiser</a></p>
+          <p class="text-danger">Pour accéder à toutes vos informations personnelles, cliquez sur "Visualiser".</p>
+          <p align='center'><a class="btn btn-primary" href="data_adh.php" role="button">Visualiser</a></p>
         </div>
 </div>
 

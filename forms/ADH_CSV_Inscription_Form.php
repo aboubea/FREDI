@@ -68,16 +68,32 @@ if (isset($message)) {
   
   <label for="id_club">Club : </label>
   <select id="id_club" name="id_club">
-  
   <?php
   //Affiche la liste des clubs :
   foreach($clubs as $club){
     echo '<option value="'.$club->getId_club().'">'.$club->getLibelle_club().'</option>';
   }
   ?>
-
   </select>
+
+  <?php
+  //Si le responsable Legal est connecté, le formulaire affiche le responsable legal de l'adhérent à inscrire, ainsi que son prenom/nom
+  //On récupère également en formulaire caché l'ID du responsable legal
+if (isset($_SESSION['mail_resp_leg'])) {
+    ?>
+
   <br />
+  <label for="resp_leg">Responsable Legal :</label>
+  <input placeholder="" type="text" name="" id="resp_leg" disabled="disabled" required="required" value="<?php echo $responsable_legal->getPrenom_resp_leg() . " ". $responsable_legal->getNom_resp_leg() ; ?>">
+  <br />
+
+  <label for="id_resp_leg"></label>
+  <input placeholder="" type="hidden" name="" id="id_resp_leg" required="required" value="<?php echo $id_resp_leg ; ?>">
+  <br />
+
+  <?php
+}
+?>
   
   <input class="btn btn-primary" type="submit" name="submit" value="S'inscrire">
   

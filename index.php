@@ -1,10 +1,8 @@
 <?php
 include 'head.php';
 include 'init.php';
-
 session_start();
 include 'inc/user_restriction.php';
-
 ?>
 
 <html>
@@ -35,7 +33,7 @@ include 'inc/user_restriction.php';
     ?>
 <h2 align="center">Bienvenue sur notre site <?php echo APPLINAME?> !</h2>
 
-<p align="center">Bienvenue sur ce site qui correspond au projet du groupe 1 SIO2 18/19</p>
+<p align="center">Bienvenue sur ce site qui correspond au projet du groupe 1 SIO 18/19</p>
 <br>
 <p align="center">Vous êtes adhérents, cliquez <a href="connexion_adh.php">ici</a></p>
 <p align="center">Vous êtes le responsable légal, cliquez <a href="connexion_resp_leg.php">ici</a></p>
@@ -50,7 +48,6 @@ include 'inc/user_restriction.php';
 
 <?php
 include 'logo.php';
-
 include 'team.php';
 include 'footer.php';
 ?>

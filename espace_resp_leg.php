@@ -46,29 +46,25 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
           
           <table>
             <tr>
-                <th>ID</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Rue</th>
                 <th>Code Postal</th>
                 <th>Ville</th>
-                <th>Mail</th>
             </tr>
 <?php
   echo '<tr>';
-  echo '<td>'.$responsable_legal->getId_resp_leg().'</td>';
   echo '<td>'.$responsable_legal->getNom_resp_leg().'</td>';
   echo '<td>'.$responsable_legal->getPrenom_resp_leg().'</td>';
   echo '<td>'.$responsable_legal->getRue_resp_leg().'</td>';
   echo '<td>'.$responsable_legal->getCp_resp_leg().'</td>';
   echo '<td>'.$responsable_legal->getVille_resp_leg().'</td>';
-  echo '<td>'.$responsable_legal->getMail_resp_leg().'</td>';
   echo '</tr>';
 ?>
 </table>
 <br />
-          <p class="text-danger">Pour modifier vos informations personnelles, cliquez sur "Modifier mes informations".</p>
-          <p><a class="btn btn-primary" href="#" role="button">Modifier mes informations</a></p>
+<p class="text-danger">Pour accéder à toutes vos informations personnelles, cliquez sur "Visualiser".</p>
+          <p><a class="btn btn-primary" href="data_rl.php" role="button">Visualiser</a></p>
         </div>
 </div>
 
@@ -82,6 +78,10 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
           <h3>Adhérent(s) mineur(s)</h3>
 
           <?php
+          if(isset($_GET["inscrit"])){
+            echo '<p align"center"><strong>Le licencié mineur à votre charge à bien été enregistré.</strong></p>';
+          }
+
           //On prépare les mathodes DAO de Adhérent (car on doit retourner la liste des adhérents mineur inscrits par le responsable legal)
           $adherentDAO = new AdherentDAO();
 
@@ -107,7 +107,7 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
                   echo '<td>'.$adherent->getLicence_adh().'</td>';
                   echo '<td>'.$adherent->getNom_adh().'</td>';
                   echo '<td>'.$adherent->getPrenom_adh().'</td>';
-                  echo '<td><p><a class="btn btn-primary" href="bordereaux?licence='. $licence .'.php" role="button">Accéder aux bordereaux</a></p></td>';
+                  echo '<td><p><a class="btn btn-primary" href="list_borderaux.php?mail_inscrit='. $adherent->getMail_inscrit() .'" role="button">Accéder aux bordereaux</a></p></td>';
                   echo '</tr>';
               } ?>
           </table>
@@ -121,7 +121,7 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
 
 <br />
           <p class="text-danger">Pour inscrire un nouvel adhérent mineur à votre charge, cliquez sur "Ajouter un adhérent mineur".</p>
-          <p><a class="btn btn-primary" href="register_adh.php" role="button">Ajouter un adhérent mineur</a></p>
+          <p><a class="btn btn-primary" href="register_adh_mineur.php" role="button">Ajouter un adhérent mineur</a></p>
         </div><!-- /col-xs-12 -->
 </div> <!-- /row -->
 

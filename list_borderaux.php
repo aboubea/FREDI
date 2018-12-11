@@ -2,7 +2,14 @@
 include 'head.php';
 include 'init.php';
 session_start();
-$mail_inscrit = $_SESSION['mail_inscrit'];
+if(isset($_SESSION['mail_inscrit'])){
+    $mail_inscrit = $_SESSION['mail_inscrit'];
+}elseif(isset($_GET['mail_inscrit']) && isset($_SESSION['mail_resp_leg'])){
+    $mail_inscrit = $_GET['mail_inscrit'];
+}else{
+    header('Location:index.php?private=1');
+  }
+
 $adherentDAO = new AdherentDAO();
 $adherent= $adherentDAO->findByMail($mail_inscrit);
 
@@ -22,8 +29,8 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Espace Adhérent </h1>
-                <h4 class="header-running-text light"><?php echo "Test" ;?> ></h4>
+                <h1 class="header-headline bold">Vos bordereaux </h1>
+                <h4 class="header-running-text light">Licencié : <?php echo $adherent->getPrenom_adh() . ' ' . $adherent->getNom_adh() ;?></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
@@ -40,16 +47,15 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 if (count($notes) !== 0){
     echo "<table align='center'>";
     echo '<tr>';
-    echo '<th>ID</th>';
     echo '<th>Année</th>';
-    echo '<th>Is_Validate?</th>';
-    echo '<th>Visualiser</th>';
-    echo '<th>Ajouter ligne de frais</th>';
+    echo '<th>Validé</th>';
+    echo '<th>Visualiser vos frais</th>';
+    echo '<th>Ajouter vos frais</th>';
+    echo '<th>Exemplaire en PDF</th>';
     echo '</tr>';
     
     foreach ($notes as $note) {
       echo '<tr>';
-      echo '<td>'.$note->getid_note_frais().'</td>';
       echo '<td>'.$note->getannee().'</td>';
       $validate = $note->getis_validate();
       if ($validate == 0)
@@ -60,6 +66,12 @@ if (count($notes) !== 0){
       }
       echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
       echo '<td><a href="insertion_ligne.php?id_note_frais='.$note->getid_note_frais().'">Ajouter</a></td>';
+      if ($validate == 0)
+      {
+          echo '<td>En attente de validation par le trésorier</td>';
+      } else {
+          echo '<td>Lien en PDF</td>';
+      }
       echo '</tr>';
       
     }

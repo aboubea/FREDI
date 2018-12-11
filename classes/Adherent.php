@@ -13,6 +13,7 @@ private $ville_adh;
 private $mail_inscrit;
 private $mdp_inscrit;
 private $id_club;
+private $id_resp_leg;
 
 // function construct
 function __construct(array $tableau = null) {
@@ -108,6 +109,14 @@ function getId_club(){
 
 function setId_club($id_club){
   $this->id_club = $id_club;
+ }
+
+function getId_resp_leg(){
+  return $this->id_resp_leg;
+ }
+
+function setId_resp_leg($id_resp_leg){
+  $this->id_resp_leg = $id_resp_leg;
  }
 
 //hydrateur

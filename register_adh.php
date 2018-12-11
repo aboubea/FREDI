@@ -1,11 +1,15 @@
 <?php
 include 'head.php';
 include 'init.php';
-// Récupère la liste des Clubs (liste déroulante) et les Adhérents présents (pour ne pas rentrer un email déjà présent)
+// On récupère la liste des adhérents présents dans la BDD
 $adherentDAO = new AdherentDAO;
-$adherents = $adherentDAO->findAll(); //Liste desadherents
+$adherents = $adherentDAO->findAll();
+// On récupère la liste des clubs présents dans la BDD
 $clubDAO = new ClubDAO;
-$clubs = $clubDAO->findAllClubs(); //Liste des clubs
+$clubs = $clubDAO->findAllClubs();
+// On prépare les méthodes de adherentCSVDAO
+$adherentCSVDAO = new AdherentCSVDAO;
+
 ?>
 <html>
 <body>
@@ -18,7 +22,7 @@ $clubs = $clubDAO->findAllClubs(); //Liste des clubs
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
                 <h1 class="header-headline bold">Adhérent<br></h1>
-                <h4 class="header-running-text light"> Inscrivez-vous ></h4>
+                <h4 class="header-running-text light"> Vous êtes sur la page d'inscription ></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
@@ -27,24 +31,61 @@ $clubs = $clubDAO->findAllClubs(); //Liste des clubs
 <!-- Verification de licence si déjà présente dans la BDD -->
 <div class="row">
         <div class="col-xs-12">
-          <h2 align = "center">Vérifier ma licence</h2>
-          <p align = "center">Votre licence se trouve peut-être déjà dans notre base de données, cliquez sur "Tester" afin de tester votre licence.</p>
-          <p align ="center"><a class="btn btn-primary" href="#" role="button" >Tester</a></p>
-       </div>
+          <h2 align = "center">Inscription Adhérent</h2>
+
+          <?php
+          //Si le formulaire de test est fini on affichera l'autre formulaire d'inscription
+          $form_test=false;
+          $submit2 = isset($_POST['submit2']);
+          //Si on saisi la licence
+          if ($submit2) {
+
+            //On récupère la licence saisie dans le formulaire
+            $licence_adh_csv = isset($_POST['licence_adh_csv']) ? $_POST['licence_adh_csv'] : '';
+
+            // On récupère les données de l'adhérent dans la table CSV par sa licence (s'il n'est pas présent, il n'y aura pas de données pré-remplies)
+            $adherent_csv = $adherentCSVDAO->find($licence_adh_csv);
+            
+            //Début de vérification d'un adhérent 
+            if ($adherent_csv ==! false && $adherent_csv->getLicence_adh_csv() ==! "" ) {
+            $message = "Votre licence a été trouvée dans notre base de données ! Veuillez fournir un mail, un mot de passe et le club associé.";
+            ?>
+                <h3 align = "center">Etape 2 : Inscription d'un licencié existant</h2> 
+            <?php
+            // Sinon le message change car l'adhérent n'existe pas dans le CSV
+            } else {
+                $message = "Votre licence ne se trouve pas dans notre base de données, veuillez vous inscrire via le formulaire ci-dessous.";
+                ?>
+                <h3 align = "center">Etape 2 : Inscription d'un nouveau licencié</h2>
+            <?php
+            } //Fin de vérification
+             
+            //Le formulaire 1 est fini
+            $form_test=true;
+
+        //Tant que le formulaire 1 (Tester sa licence) n'est pas complété, on l'affiche 
+          }else{
+              ?>
+            <h3 align = "center">Etape 1 : Vérifier ma licence</h2>
+            <p align = "center">Votre licence se trouve peut-être déjà dans notre base de données, saisissez votre licence puis cliquez sur "Vérifier"</p>
+          <?php
+            //Formulaire pour tester si l'adhérent est présent dans la BDD (submit2)
+            include 'forms/ADH_Test_Licence.php';
+          }
+          ?>
+    </div>
 </div>
 
 <div class="row">
         <div class="col-xs-12">
-          <h2 align = "center">Inscription Adhérent</h2>
-          <p class="text-danger">Si vous venez d'acquérir une nouvelle licence, remplissez les champs prévus pour l'inscription et cliquez sur "s'inscrire".</p>
           <?php
 // Détermine si on a cliqué sur le bouton submit
 $submit = isset($_POST['submit']);
 $erreur = "";
 
+// Formulaire soumi
 if ($submit) {
     if (!empty($_POST['licence_adh']) AND !empty($_POST['nom_adh']) AND !empty($_POST['prenom_adh']) AND !empty($_POST['sexe_adh']) AND !empty($_POST['date_naissance_adh']) AND !empty($_POST['adresse_adh']) AND !empty($_POST['cp_adh']) AND !empty($_POST['ville_adh']) AND !empty($_POST['mail_inscrit']) AND !empty($_POST['mdp_inscrit'])) { 
-    // Formulaire soumi
     // Récupère les données du formulaire
     $licence_adh = isset($_POST['licence_adh']) ? $_POST['licence_adh'] : '';
     $nom_adh = isset($_POST['nom_adh']) ? $_POST['nom_adh'] : '';
@@ -87,14 +128,16 @@ if ($submit) {
     $erreur = "<p align='center'><strong>Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp.</strong></p>";
 }
 }
-// Ajout du formulaire d'inscription
-    include 'forms/ADH_Inscription_Form.php';
-?>
 
+// Formulaire d'inscription de l'adhérent
+if ($form_test === true) {
+    include 'forms/ADH_CSV_Inscription_Form.php';
+}
+?>
         </div>
 </div>
 
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a></p></p>
+<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a> | <a href="register_resp_leg.php">Vous êtes mineur ?</a> (Un responsable legal doit vous inscrire).</p>
 
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
