@@ -63,7 +63,7 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
         <div class="col-xs-12">
           <h2>Editer les bordereaux</h2>
           <p>Pour valider ou éditer de(s) bordereau(x), cliquez sur <strong>"Borderaux"</strong>.</p>
-          <p align='center'><a class="btn btn-primary" href="list_borderaux.php" role="button">Borderaux »</a></p>
+          <p align='center'><a class="btn btn-primary" href="list_bordereau_tresorier.php" role="button">Borderaux »</a></p>
        </div>
 </div>
 
