@@ -31,11 +31,11 @@ $erreur = "";
 if ($submit) {
     
     // Toutes les données sont saisies
-    if (!empty($_POST['mail_inscrit']) and !empty($_POST['mdp_inscrit'])) {
+    if (!empty($_POST['mail_tresorier']) and !empty($_POST['mdp_tresorier'])) {
         
         // Récupère les données du formulaire
-        $mail_inscrit = isset($_POST['mail_inscrit']) ? $_POST['mail_inscrit'] : '';
-        $mdp_inscrit = isset($_POST['mdp_inscrit']) ? $_POST['mdp_inscrit'] : '';
+        $mail_inscrit = isset($_POST['mail_tresorier']) ? $_POST['mail_tresorier'] : '';
+        $mdp_inscrit = isset($_POST['mdp_tresorier']) ? $_POST['mdp_tresorier'] : '';
 
         //-- On instencie le DAO de Adhérent --//
         $adherent = new AdherentDAO;
@@ -47,8 +47,8 @@ if ($submit) {
             session_start();
             
             // On stocke l'email et on redirige l'utilisteur
-            $_SESSION['mail_inscrit'] = $mail_inscrit ;
-            header('Location: espace_adh.php');
+            $_SESSION['mail_tresorier'] = $mail_inscrit ;
+            header('Location: espace_tresorier.php');
             exit;
             
             //Si l'email et le mdp ne correspondent pas
@@ -65,7 +65,7 @@ if ($submit) {
 <h2 align='center'> Connexion à l'espace Trésorier </h2>
 
 <?php
-    include 'forms/ADH_Connexion_Form.php';
+    include 'forms/Trésorier_Connexion_Form.php';
 ?>
 
 <p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a></p>
@@ -75,25 +75,6 @@ if ($submit) {
             </div>
         </div><!--hero-->
         
-        <!-- Message d'information en cas d'inscription réussite -->
-        <?php 
-        if (isset($_GET['inscrit']) ? $_GET['inscrit'] : NULL) {
-            $mail = $_GET["mail"];
-            //On execute le code qui suit en HTML/CSS/JS sans fermet l'accolade 
-        ?>
-
-        <div class="alert alert-info">
-            <a href="mailto:<?php echo $mail ; ?>" class="btn btn-xs btn-primary pull-right">Vérifier ma boîte mail</a>
-            <strong>Un mail de validation a été envoyé à votre adresse : <a href="mailto:<?php echo $mail ; ?>"><?php echo $mail ; ?></a></strong> <i class="far fa-envelope"></i>.<br />
-            <strong>Pensez à consulter votre boîte mail afin de confirmer votre compte.</strong>
-        </div>
-
-        <?php
-            } //On ferme l'accolade
-        ?>
-
-    </div> <!-- hero-container -->
-</div><!--hero-background-->
 
 <?php
 include 'logo.php';

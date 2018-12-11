@@ -37,19 +37,10 @@ include 'inc/user_restriction.php';
 
 <p align="center">Bienvenue sur ce site qui correspond au projet du groupe 1 SIO2 18/19</p>
 <br>
-<<<<<<< HEAD
-<p align="center">Vous êtes adhérents, cliquez <a href="page1.php">ici</a></p>
-<p align="center">Vous êtes trésorier, cliquez <a href="page2.php">ici</a></p>
-<p align="center">Vous êtes membre du CRIB, cliquez <a href="page3.php">ici</a></p>
-<br />
-<p align="center"><a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a></p>
-
-=======
 <p align="center">Vous êtes adhérents, cliquez <a href="connexion_adh.php">ici</a></p>
 <p align="center">Vous êtes le responsable légal, cliquez <a href="connexion_resp_leg.php">ici</a></p>
-<p align="center">Vous êtes trésorier, cliquez <a href="#">ici</a></p>
+<p align="center">Vous êtes trésorier, cliquez <a href="connexion_tresorier.php">ici</a></p>
 <p align="center">Vous êtes membre du CRIB, cliquez <a href="#">ici</a></p>
->>>>>>> b5a7f77e034ea673f05b13f87f1d6c6a7585f657
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
             </div>
