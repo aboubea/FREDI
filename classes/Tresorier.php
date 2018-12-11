@@ -1,6 +1,6 @@
 <?php
 
-class notefrais {
+class Tresorier {
 
   private $id_tredorier;
   private $nom_tresorier;
@@ -59,7 +59,7 @@ class notefrais {
    }
    
    public function getadresse(){
-    return $this->is_validate;
+    return $this->adresse;
    }
 
    public function setadresse($adresse){
@@ -90,3 +90,4 @@ class notefrais {
       }
     }
   }
+}

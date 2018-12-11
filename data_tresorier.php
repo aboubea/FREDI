@@ -24,49 +24,44 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Espace Trésorier </h1>
+                <h1 class="header-headline bold">Vos infos</h1>
                 <h4 class="header-running-text light"><?php echo "Test" ;?> ></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
 <!-- DEBUT BASE --------------------------------------------------------------------------------------------------------------- -->
 
-<h2 align='center'>Espace Trésorier</h2>
+<h2 align='center'>Espace Adhérent</h2>
 
 <div class="row"> 
         <div class="col-xs-12">
-          <h3>Mes informations</h3>
+          <h2><a href = "data.php">Mes informations</a></h2>
           
-          <table align='center'>
+          <table align='center'r>
             <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Adresse Mail</th>
+                <th>ID : </th>
+                <th>Nom : </th>
+                <th>Prenom : </th>
+                <th>Adresse Mail : </th>
+                <th>Adresse : </th>
+                <th>ID Club : </th>
             </tr>
 <?php
-  echo '<tr>';
-  echo '<td>'.$tresorier->getid_tresorier().'</td>';
-  echo '<td>'.$tresorier->getnom_tresorier().'</td>';
-  echo '<td>'.$tresorier->getprenom_tresorier().'</td>';
-  echo '<td>'.$tresorier->getmail_tresorier().'</td>';
+   echo '<tr>';
+   echo '<td>'.$tresorier->getid_tresorier().'</td>';
+   echo '<td>'.$tresorier->getnom_tresorier().'</td>';
+   echo '<td>'.$tresorier->getprenom_tresorier().'</td>';
+   echo '<td>'.$tresorier->getmail_tresorier().'</td>';
+  echo '<td>'.$tresorier->getadresse().'</td>';
+  echo '<td>'.$tresorier->getid_club().'</td>';
+
   echo '</tr>';
 ?>
 </table>
 <br />
-          <p class="text-danger">Pour accéder à vos informations personnelles, cliquez sur "Visualiser".</p>
-          <p align='center'><a class="btn btn-primary" href="data_tresorier.php" role="button">Visualiser</a></p>
         </div>
 </div>
-
-<div class="row">
-        <div class="col-xs-12">
-          <h2>Editer les bordereaux</h2>
-          <p>Pour valider ou éditer de(s) bordereau(x), cliquez sur <strong>"Borderaux"</strong>.</p>
-          <p align='center'><a class="btn btn-primary" href="list_borderaux.php" role="button">Borderaux »</a></p>
-       </div>
-</div>
-
+<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a></p>
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
             </div>
