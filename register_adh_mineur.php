@@ -115,6 +115,14 @@ if ($submit) {
     $mdp_inscrit = isset($_POST['mdp_inscrit']) ? $_POST['mdp_inscrit'] : '';
     $id_club = isset($_POST['id_club']) ? $_POST['id_club'] : '';
 
+    //On vérifie si l'adhérent est mineur
+    $date_now = date("Y-m-d");
+    $datetime1 = new DateTime($date_now);
+    $datetime2 = new DateTime($date_naissance_adh);
+    $interval = $datetime1->diff($datetime2);
+
+    if ($interval->format('%Y') <= "18"){
+
     //-- On hache le mdp donné pour l'insérer dans la BDD --//
     $mdp_hash = password_hash($mdp_inscrit, PASSWORD_BCRYPT);
 
@@ -139,10 +147,13 @@ if ($submit) {
 
     // Obligatoire sinon PHP continue à exécuter le script
     exit;  
-
+//Si l'adhérent n'est pas majeur on le redirige
+} else {
+    echo "<p align='center'><strong><i class='fas fa-exclamation-triangle'></i> Vous devez inscrire un adhérent mineur ! </strong><i class='fas fa-exclamation-triangle'></i></p>";
+}
 //Si tout n'est pas remplis > erreur
 } else {    
-    $erreur = "<p align='center'><strong>Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp.</strong></p>";
+    $erreur = "<p align='center'><i class='fas fa-exclamation-triangle'></i><strong> Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp. </strong><i class='fas fa-exclamation-triangle'></i></p>";
 }
 }
 

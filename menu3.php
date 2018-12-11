@@ -129,18 +129,10 @@
             }else{
         ?>
             <!-- Espace Administration -->
-<<<<<<< HEAD
-<<<<<<< HEAD
             <a href="connexion_tresorier.php">
-=======
-            <a href="espace_tresorier.php">
->>>>>>> 43595c3241a84a249e30a23b786f99e3f8cf64c4
-=======
-            <a href="espace_tresorier.php">
->>>>>>> 43595c3241a84a249e30a23b786f99e3f8cf64c4
-                <button class="header-btn">Espace Trésorier</button>
+            <button class="header-btn">Tresorier</button>
             </a>
-            
+
             <!-- Responsable legal -->
             <a href="connexion_resp_leg.php">
                 <button class="header-btn">Espace Responsable Legal</button>
