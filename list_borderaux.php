@@ -2,7 +2,14 @@
 include 'head.php';
 include 'init.php';
 session_start();
-$mail_inscrit = $_SESSION['mail_inscrit'];
+if(isset($_SESSION['mail_inscrit'])){
+    $mail_inscrit = $_SESSION['mail_inscrit'];
+}elseif(isset($_GET['mail_inscrit']) || isset($_SESSION['mail_resp_leg'])){
+    $mail_inscrit = $_GET['mail_inscrit'];
+}else{
+    header('Location:index.php?private=1');
+  }
+
 $adherentDAO = new AdherentDAO();
 $adherent= $adherentDAO->findByMail($mail_inscrit);
 

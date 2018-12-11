@@ -107,7 +107,7 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
                   echo '<td>'.$adherent->getLicence_adh().'</td>';
                   echo '<td>'.$adherent->getNom_adh().'</td>';
                   echo '<td>'.$adherent->getPrenom_adh().'</td>';
-                  echo '<td><p><a class="btn btn-primary" href="bordereaux?licence='. $licence .'.php" role="button">Accéder aux bordereaux</a></p></td>';
+                  echo '<td><p><a class="btn btn-primary" href="list_borderaux.php?mail_inscrit='. $adherent->getMail_inscrit() .'.php" role="button">Accéder aux bordereaux</a></p></td>';
                   echo '</tr>';
               } ?>
           </table>
