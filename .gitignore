@@ -6,10 +6,16 @@ fredi_v2/src/classes/desktop.ini
 fredi_v2/src/css/desktop.ini
 inc/desktop.ini
 <<<<<<< HEAD
+<<<<<<< HEAD
 forms/desktop.ini
 desktop.ini
 assets/desktop.ini
 assets/css/desktop.ini
+=======
+assets/css/desktop.ini
+desktop.ini
+assets/desktop.ini
+>>>>>>> 43595c3241a84a249e30a23b786f99e3f8cf64c4
 =======
 assets/css/desktop.ini
 desktop.ini
@@ -20,6 +26,10 @@ assets/js/desktop.ini
 classes/desktop.ini
 config/desktop.ini
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+forms/desktop.ini
+>>>>>>> 43595c3241a84a249e30a23b786f99e3f8cf64c4
 =======
 forms/desktop.ini
 >>>>>>> 43595c3241a84a249e30a23b786f99e3f8cf64c4
