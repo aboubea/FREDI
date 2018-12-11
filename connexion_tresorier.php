@@ -34,20 +34,20 @@ if ($submit) {
     if (!empty($_POST['mail_tresorier']) and !empty($_POST['mdp_tresorier'])) {
         
         // Récupère les données du formulaire
-        $mail_inscrit = isset($_POST['mail_tresorier']) ? $_POST['mail_tresorier'] : '';
-        $mdp_inscrit = isset($_POST['mdp_tresorier']) ? $_POST['mdp_tresorier'] : '';
+        $mail_tresorier = isset($_POST['mail_tresorier']) ? $_POST['mail_tresorier'] : '';
+        $mdp_tresorier = isset($_POST['mdp_tresorier']) ? $_POST['mdp_tresorier'] : '';
 
-        //-- On instencie le DAO de Adhérent --//
-        $adherent = new AdherentDAO;
+        //-- On instencie le DAO de Tresorier --//
+        $tresorier = new TresorierDAO;
 
         //On vérifie que le mail et mdp soient correct
-        if ($adherent->est_inscrit($mail_inscrit, $mdp_inscrit)) {
+        if ($tresorier->est_tresorier($mail_tresorier, $mdp_tresorier)) {
             
             //Si c'est bon on lance le processus de session
             session_start();
             
             // On stocke l'email et on redirige l'utilisteur
-            $_SESSION['mail_tresorier'] = $mail_inscrit ;
+            $_SESSION['mail_tresorier'] = $mail_tresorier ;
             header('Location: espace_tresorier.php');
             exit;
             
@@ -68,7 +68,7 @@ if ($submit) {
     include 'forms/Trésorier_Connexion_Form.php';
 ?>
 
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="register_adh.php">Pas encore inscrit ?</a></p>
+<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> </p>
 
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
