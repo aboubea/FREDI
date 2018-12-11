@@ -4,7 +4,7 @@ include 'init.php';
 session_start();
 if(isset($_SESSION['mail_inscrit'])){
     $mail_inscrit = $_SESSION['mail_inscrit'];
-}elseif(isset($_GET['mail_inscrit']) || isset($_SESSION['mail_resp_leg'])){
+}elseif(isset($_GET['mail_inscrit']) && isset($_SESSION['mail_resp_leg'])){
     $mail_inscrit = $_GET['mail_inscrit'];
 }else{
     header('Location:index.php?private=1');
