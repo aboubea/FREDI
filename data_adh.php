@@ -16,7 +16,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Espace Adhérent </h1>
+                <h1 class="header-headline bold">Vos infos</h1>
                 <h4 class="header-running-text light"><?php echo "Test" ;?> ></h4>
                 </div><!--hero-left-->
                 <div class="base">
@@ -42,8 +42,8 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 <?php
   echo '<tr>';
   echo '<td>'.$adherent->getLicence_adh().'</td>';
-  echo '<td>'.$adherent->getPrenom_adh().'</td>';
   echo '<td>'.$adherent->getNom_adh().'</td>';
+  echo '<td>'.$adherent->getPrenom_adh().'</td>';
   echo '<td>'.$adherent->getMail_inscrit().'</td>';
   echo '<td>'.$adherent->getAdresse_adh().'</td>';
   echo '<td>'.$adherent->getVille_adh().'</td>';

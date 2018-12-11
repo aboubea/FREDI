@@ -1,6 +1,22 @@
 <?php
 include 'head.php';
 include 'init.php';
+
+//On démarre la session
+session_start();
+
+//On vérifie que le responsable legal est bien connecté
+if (isset($_SESSION['mail_resp_leg'])) {
+    $mail_resp_leg = $_SESSION['mail_resp_leg'];
+}else{
+  header('Location:index.php?private=1');
+}
+
+//On récupère les détails du responsable légal afin d'obtenir son ID (pour l'insertion d'un adhérent associé a son responsable dans le formulaire)
+$responsable_legalDAO = new Responsable_legalDAO();
+$responsable_legal = $responsable_legalDAO->findByMail($mail_resp_leg);
+$id_resp_leg = $responsable_legal->getId_resp_leg();
+
 // On récupère la liste des adhérents présents dans la BDD
 $adherentDAO = new AdherentDAO;
 $adherents = $adherentDAO->findAll();
@@ -9,7 +25,6 @@ $clubDAO = new ClubDAO;
 $clubs = $clubDAO->findAllClubs();
 // On prépare les méthodes de adherentCSVDAO
 $adherentCSVDAO = new AdherentCSVDAO;
-
 ?>
 <html>
 <body>
@@ -21,8 +36,8 @@ $adherentCSVDAO = new AdherentCSVDAO;
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Adhérent<br></h1>
-                <h4 class="header-running-text light"> Vous êtes sur la page d'inscription ></h4>
+                <h1 class="header-headline bold">Responsable <br>Legal</h1>
+                <h4 class="header-running-text light">Vous allez inscrire un licencié mineur ></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
@@ -31,13 +46,14 @@ $adherentCSVDAO = new AdherentCSVDAO;
 <!-- Verification de licence si déjà présente dans la BDD -->
 <div class="row">
         <div class="col-xs-12">
-          <h2 align = "center">Inscription Adhérent</h2>
+          <h2 align = "center">Inscription d'un licencié mineur</h2>
 
           <?php
           //Si le formulaire de test est fini on affichera l'autre formulaire d'inscription
           $form_test=false;
           $submit2 = isset($_POST['submit2']);
-          //Si on saisi la licence
+
+          //Si on saisi la licence (formulaire de test)
           if ($submit2) {
 
             //On récupère la licence saisie dans le formulaire
@@ -48,13 +64,13 @@ $adherentCSVDAO = new AdherentCSVDAO;
             
             //Début de vérification d'un adhérent 
             if ($adherent_csv ==! false && $adherent_csv->getLicence_adh_csv() ==! "" ) {
-            $message = "Votre licence a été trouvée dans notre base de données ! Veuillez fournir un mail, un mot de passe et le club associé.";
+            $message = "La licence a été trouvée dans notre base de données ! Veuillez fournir un mail, un mot de passe et le club associé.";
             ?>
                 <h3 align = "center">Etape 2 : Inscription d'un licencié existant</h2> 
             <?php
             // Sinon le message change car l'adhérent n'existe pas dans le CSV
             } else {
-                $message = "Votre licence ne se trouve pas dans notre base de données, veuillez vous inscrire via le formulaire ci-dessous.";
+                $message = "La licence ne se trouve pas dans notre base de données, veuillez inscrire l'adhérent via le formulaire ci-dessous.";
                 ?>
                 <h3 align = "center">Etape 2 : Inscription d'un nouveau licencié</h2>
             <?php
@@ -66,8 +82,8 @@ $adherentCSVDAO = new AdherentCSVDAO;
         //Tant que le formulaire 1 (Tester sa licence) n'est pas complété, on l'affiche 
           }else{
               ?>
-            <h3 align = "center">Etape 1 : Vérifier ma licence</h2>
-            <p align = "center">Votre licence se trouve peut-être déjà dans notre base de données, saisissez votre licence puis cliquez sur "Vérifier"</p>
+            <h3 align = "center">Etape 1 : Vérification de la licence</h2>
+            <p align = "center">La licence se trouve peut-être déjà dans notre base de données, saisissez-la puis cliquez sur "Vérifier"</p>
           <?php
             //Formulaire pour tester si l'adhérent est présent dans la BDD (submit2)
             include 'forms/ADH_Test_Licence.php';
@@ -98,7 +114,7 @@ if ($submit) {
     $mail_inscrit = isset($_POST['mail_inscrit']) ? $_POST['mail_inscrit'] : '';
     $mdp_inscrit = isset($_POST['mdp_inscrit']) ? $_POST['mdp_inscrit'] : '';
     $id_club = isset($_POST['id_club']) ? $_POST['id_club'] : '';
-    
+
     //-- On hache le mdp donné pour l'insérer dans la BDD --//
     $mdp_hash = password_hash($mdp_inscrit, PASSWORD_BCRYPT);
 
@@ -113,12 +129,13 @@ if ($submit) {
         'ville_adh'=>$ville_adh,
         'mail_inscrit'=>$mail_inscrit,
         'mdp_inscrit'=>$mdp_hash,
-        'id_club'=>$id_club
+        'id_club'=>$id_club,
+        'id_resp_leg'=>$id_resp_leg
     ));
 
     // Ajoute l'enregistrement dans la BDD
-    $nb = $adherentDAO->insert($adherent);
-    header('Location: connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
+    $nb = $adherentDAO->insert($adherent, $id_resp_leg);
+    header('Location: espace_resp_leg.php?inscrit=1');
 
     // Obligatoire sinon PHP continue à exécuter le script
     exit;  
@@ -137,7 +154,7 @@ if ($form_test === true) {
         </div>
 </div>
 
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a> | <a href="register_resp_leg.php">Vous êtes mineur ?</a> (Un responsable legal doit vous inscrire).</p>
+<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="espace_resp_leg.php">Espace personnel</a></p>
 
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->

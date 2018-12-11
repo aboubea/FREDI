@@ -122,8 +122,8 @@ function findAllByIdRespLeg($id_resp_leg) {
    * @param Adherent $adherent
    * @return type
    */
-  function insert($adherent) {
-    $sql = "insert into adherent (licence_adh, nom_adh, prenom_adh, sexe_adh, date_naissance_adh, adresse_adh, cp_adh, ville_adh, mail_inscrit, mdp_inscrit, id_club) values (:licence_adh, :nom_adh, :prenom_adh, :sexe_adh, :date_naissance_adh, :adresse_adh, :cp_adh, :ville_adh, :mail_inscrit, :mdp_inscrit, :id_club)";
+  function insert($adherent, $id_resp_leg) {
+    $sql = "insert into adherent (licence_adh, nom_adh, prenom_adh, sexe_adh, date_naissance_adh, adresse_adh, cp_adh, ville_adh, mail_inscrit, mdp_inscrit, id_club, id_resp_leg) values (:licence_adh, :nom_adh, :prenom_adh, :sexe_adh, :date_naissance_adh, :adresse_adh, :cp_adh, :ville_adh, :mail_inscrit, :mdp_inscrit, :id_club, :id_resp_leg)";
     $params = array(
       ":licence_adh"=>$adherent->getLicence_adh(),
       ":nom_adh"=>$adherent->getNom_adh(),
@@ -135,7 +135,8 @@ function findAllByIdRespLeg($id_resp_leg) {
       ":ville_adh"=>$adherent->getVille_adh(),
       ":mail_inscrit"=>$adherent->getMail_inscrit(),
       ":mdp_inscrit"=>$adherent->getMdp_inscrit(),
-      ":id_club"=>$adherent->getId_club()
+      ":id_club"=>$adherent->getId_club(),
+      ":id_resp_leg"=>$id_resp_leg
     );
     $sth = $this->executer($sql, $params);
     $nb = $sth->rowcount();

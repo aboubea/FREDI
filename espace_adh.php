@@ -57,7 +57,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 </table>
 <br />
           <p class="text-danger">Pour accéder à toutes vos informations personnelles, cliquez sur "Visualiser".</p>
-          <p align='center'><a class="btn btn-primary" href="data.php" role="button">Visualiser</a></p>
+          <p align='center'><a class="btn btn-primary" href="data_adh.php" role="button">Visualiser</a></p>
         </div>
 </div>
 
