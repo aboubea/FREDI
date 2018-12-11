@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
---
+-- 
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 11 déc. 2018 à 01:47
+-- Généré le :  lun. 10 déc. 2018 à 02:27
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `fredi`
+-- Base de données :  `fredi` 
 --
 CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `fredi`;
@@ -58,11 +58,9 @@ CREATE TABLE `adherent` (
 --
 
 INSERT INTO `adherent` (`licence_adh`, `nom_adh`, `prenom_adh`, `sexe_adh`, `date_naissance_adh`, `adresse_adh`, `cp_adh`, `ville_adh`, `mail_inscrit`, `mdp_inscrit`, `id_club`, `id_resp_leg`) VALUES
-('140506071023', 'Boube', 'Antoine', 'F', '1996-11-26', '4 rue idrac', '31000', 'toulouse', 'antoine.boubeastugue@outlook.fr', '$2y$10$7SxFXP8LvlXGHGo072kW7./XLKfPaJ6TkJccVHVGV76/25EmRkfdK', 1, NULL),
 ('170540010556', 'Barbé', 'Paco', 'H', '1997-05-03', '6 RUE GEORGES PICOT', '31400', 'Toulouse', 'paco.barbe@outlook.fr', '$2y$10$QYZOSx/5ITAy3IwRIMLXcOIHMqCYqzQYUvhDzCEe.1w728Fz8BKLu', 50, NULL),
 ('170540010557', 'Azerty', 'Azert', 'H', '1997-07-18', '5 RUE GEORGES PICOT', '31400', 'TOULOUSE', 'azerty.azer@outlook.fr', '$2y$10$bdnRY5ywjEW3ZTiswASCKO3PM7ic2a35nboCz8Iuw.UW2uNMGE/di', 45, NULL),
-('170540010558', 'Jean', 'Bonneau', 'H', '1997-06-05', '2, Rue Picasso', '31400', 'Toulouse', 'jean.bonneau@outlook.fr', '$2y$10$sQnYXeoYx7mh77qExfoOX.y3EVjRokFH.p.KdVjERw3Zc8iup6kqC', 7, NULL),
-('170540010561', 'Barbé', 'Charly', 'H', '1997-05-03', '13 rue du Marché', '66300', 'Banyuls-Dels-Aspres', 'charly.barbe@outlook.fr', '$2y$10$119pAom7om43aanDr1ciV.fvKaqK07xuc0EdYfcWRgqX.9TCciL9a', 1, 4);
+('170540010558', 'Jean', 'Bonneau', 'H', '1997-06-05', '2, Rue Picasso', '31400', 'Toulouse', 'jean.bonneau@outlook.fr', '$2y$10$sQnYXeoYx7mh77qExfoOX.y3EVjRokFH.p.KdVjERw3Zc8iup6kqC', 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -236,26 +234,14 @@ CREATE TABLE `ligne_frais` (
   `cout_repas` decimal(10,0) DEFAULT NULL,
   `cout_hebergement` decimal(10,0) DEFAULT NULL,
   `annee` year(4) NOT NULL,
-  `id_motif` int(11) NOT NULL,
-  `id_note_frais` int(11) DEFAULT NULL
+  `id_motif` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- RELATIONS POUR LA TABLE `ligne_frais`:
 --   `id_motif`
 --       `motif` -> `id_motif`
---   `id_note_frais`
---       `note_frais` -> `id_note_frais`
 --
-
---
--- Déchargement des données de la table `ligne_frais`
---
-
-INSERT INTO `ligne_frais` (`id_ligne_frais`, `date_frais`, `trajet_frais`, `km_parcourus`, `cout_peage`, `cout_repas`, `cout_hebergement`, `annee`, `id_motif`, `id_note_frais`) VALUES
-(1, '2018-11-26', 'vince', 4, '45', '3', '8', 0000, 5, 1),
-(10, '2018-11-01', 'Bordereau - Brives', 56, '130', '27', '13', 0000, 2, 2),
-(11, '2018-11-08', 'Rennes', 10, '10', '11', '12', 0000, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -317,23 +303,16 @@ INSERT INTO `motif` (`id_motif`, `libelle_motif`) VALUES
 CREATE TABLE `note_frais` (
   `id_note_frais` int(11) NOT NULL,
   `licence_adh` varchar(25) NOT NULL,
-  `annee` int(11) DEFAULT NULL,
-  `is_valdidate` int(11) DEFAULT '0'
+  `id_ligne_frais` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- RELATIONS POUR LA TABLE `note_frais`:
 --   `licence_adh`
 --       `adherent` -> `licence_adh`
+--   `id_ligne_frais`
+--       `ligne_frais` -> `id_ligne_frais`
 --
-
---
--- Déchargement des données de la table `note_frais`
---
-
-INSERT INTO `note_frais` (`id_note_frais`, `licence_adh`, `annee`, `is_valdidate`) VALUES
-(1, '140506071023', 2018, 0),
-(2, '170540010556', 2018, 0);
 
 -- --------------------------------------------------------
 
@@ -384,8 +363,7 @@ CREATE TABLE `responsable_legal` (
 INSERT INTO `responsable_legal` (`id_resp_leg`, `nom_resp_leg`, `prenom_resp_leg`, `rue_resp_leg`, `cp_resp_leg`, `ville_resp_leg`, `mail_resp_leg`, `mdp_resp_leg`) VALUES
 (1, 'Legal', 'Responsable', '14, rue Grue', '31200', 'Toulouse', 'RL1@outlook.fr', '$2y$12$8vt/EJ0t0aKsBAvFWTBlKu9GZ0cUQ3DdDm.LsqisWjSOWopuv6Zu6\r\n'),
 (2, 'Jack', 'Prevert', '2, Rue du Tour', '31380', 'Montastruc', 'jack.prevert@outlook.fr', '$2y$12$yQNEl3SPfTvSVcG/oRcgp.a0dxsaF1rVEa8naL9LtR06fIsfiEBNq\r\n'),
-(3, 'Test1', 'Test1', 'Test1', '31200', 'Toulouse', 'test1@outlook.fr', '$2y$10$PvGGCjS546IP9miS04f/NeiaHjq/1tZDlYh3rRDCymd8OsU68j0cS'),
-(4, 'Barbé', 'Franck', '16 rue du Marché', '66300', 'Banyuls-Dels-Aspres', 'franck.barbe@outlook.fr', '$2y$10$MQ28G5grsuoFBAsNg.fiCe7mfgfSe06wAYdGPsj0JBg/./Jgoaup.');
+(3, 'Test1', 'Test1', 'Test1', '31200', 'Toulouse', 'test1@outlook.fr', '$2y$10$PvGGCjS546IP9miS04f/NeiaHjq/1tZDlYh3rRDCymd8OsU68j0cS');
 
 -- --------------------------------------------------------
 
@@ -438,18 +416,11 @@ ALTER TABLE `club`
   ADD KEY `Club_Ligue_FK` (`id_ligue`);
 
 --
--- Index pour la table `indemnite`
---
-ALTER TABLE `indemnite`
-  ADD PRIMARY KEY (`annee`);
-
---
 -- Index pour la table `ligne_frais`
 --
 ALTER TABLE `ligne_frais`
   ADD PRIMARY KEY (`id_ligne_frais`),
-  ADD KEY `Ligne_Frais_Motif_FK` (`id_motif`),
-  ADD KEY `id_note_frais_FK` (`id_note_frais`);
+  ADD KEY `Ligne_Frais_Motif_FK` (`id_motif`);
 
 --
 -- Index pour la table `ligue`
@@ -468,7 +439,8 @@ ALTER TABLE `motif`
 --
 ALTER TABLE `note_frais`
   ADD PRIMARY KEY (`id_note_frais`),
-  ADD UNIQUE KEY `Note_Frais_Adherent_FK` (`licence_adh`) USING BTREE;
+  ADD KEY `Note_Frais_Adherent_FK` (`licence_adh`),
+  ADD KEY `Note_Frais_Ligne_Frais_FK` (`id_ligne_frais`);
 
 --
 -- Index pour la table `responsable_crib`
@@ -505,7 +477,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT pour la table `ligne_frais`
 --
 ALTER TABLE `ligne_frais`
-  MODIFY `id_ligne_frais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_ligne_frais` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `ligue`
@@ -523,7 +495,7 @@ ALTER TABLE `motif`
 -- AUTO_INCREMENT pour la table `note_frais`
 --
 ALTER TABLE `note_frais`
-  MODIFY `id_note_frais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_note_frais` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `responsable_crib`
@@ -535,7 +507,7 @@ ALTER TABLE `responsable_crib`
 -- AUTO_INCREMENT pour la table `responsable_legal`
 --
 ALTER TABLE `responsable_legal`
-  MODIFY `id_resp_leg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_resp_leg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `tresorier`
@@ -564,14 +536,14 @@ ALTER TABLE `club`
 -- Contraintes pour la table `ligne_frais`
 --
 ALTER TABLE `ligne_frais`
-  ADD CONSTRAINT `Ligne_Frais_Motif_FK` FOREIGN KEY (`id_motif`) REFERENCES `motif` (`id_motif`),
-  ADD CONSTRAINT `id_note_frais_FK` FOREIGN KEY (`id_note_frais`) REFERENCES `note_frais` (`id_note_frais`);
+  ADD CONSTRAINT `Ligne_Frais_Motif_FK` FOREIGN KEY (`id_motif`) REFERENCES `motif` (`id_motif`);
 
 --
 -- Contraintes pour la table `note_frais`
 --
 ALTER TABLE `note_frais`
-  ADD CONSTRAINT `note_frais_Adherent_FK` FOREIGN KEY (`licence_adh`) REFERENCES `adherent` (`licence_adh`);
+  ADD CONSTRAINT `note_frais_Adherent_FK` FOREIGN KEY (`licence_adh`) REFERENCES `adherent` (`licence_adh`),
+  ADD CONSTRAINT `note_frais_Ligne_Frais_FK` FOREIGN KEY (`id_ligne_frais`) REFERENCES `ligne_frais` (`id_ligne_frais`);
 
 --
 -- Contraintes pour la table `responsable_crib`
