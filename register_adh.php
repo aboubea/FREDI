@@ -149,7 +149,7 @@ if ($form_test === true) {
         </div>
 </div>
 
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a> | <a href="register_resp_leg.php">Vous êtes mineur ?</a> (Un responsable legal doit vous inscrire).</p>
+<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a> | <a href="register_resp_leg.php">Vous êtes mineur ?</a></p>
 
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->
