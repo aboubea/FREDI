@@ -64,7 +64,7 @@ if (count($notes) !== 0){
       } else {
           echo '<td>Oui</td>';
       }
-      echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
+      echo '<td><a href="lire_ligne_tresorier.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
       if ($validate == 0)
       {
           echo '<td><a href = "valider_tresorier.php?id_note_frais='.$note->getid_note_frais().'">Valider</a></td>';

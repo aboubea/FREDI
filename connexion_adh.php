@@ -95,11 +95,7 @@ if ($submit) {
     </div> <!-- hero-container -->
 </div><!--hero-background-->
 
-<?php
-include 'logo.php';
-include 'team.php';
-include 'footer.php';
-?>
+
 
 </body>
 </html>

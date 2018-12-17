@@ -45,7 +45,7 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
         echo "<table align='center'>";
         echo '<tr>';
         echo '<th>Date</th>';
-        echo '<th>Nom du Trajet</th>';
+        echo '<th>Libellé du Trajet</th>';
         echo '<th>Nombre de KM</th>';
         echo '<th>Cout peage</th>';
         echo '<th>Cout repas</th>';

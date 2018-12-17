@@ -68,8 +68,9 @@ function insert($date_frais,$trajet_frais,$km_parcourus, $cout_peage, $cout_repa
     // Retourne le nombre de mise à jour
     return $nb;
 }
-/*function delete($id_ligne){
-  $sql = "delete from ligne_frais where id_ligne_frais= :id_ligne";
+
+function delete($id_ligne){
+  $sql = "delete from ligne_frais where id_ligne_frais = :id_ligne";
     $params = array(":id_ligne" => $id_ligne);
     $sth = $this->executer($sql,$params);
     $nb = $sth->rowcount();
@@ -77,7 +78,7 @@ function insert($date_frais,$trajet_frais,$km_parcourus, $cout_peage, $cout_repa
     return $nb;
 }
 
-
+/*
 function update_frais($lignefrais){
   $sql = "update_frais ligne_frais set date_frais_frais= :date_frais,trajet_frais= :trajet_frais, km_parcourus = :km_parcourus, cout_peage= :cout_peage,cout_repas= :cout_repas,cout_hebergement= :cout_hebergement, annee= :date_frais";
   $params = array(

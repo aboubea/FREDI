@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 12 déc. 2018 à 10:25
+-- Généré le :  lun. 17 déc. 2018 à 13:44
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -351,16 +351,15 @@ CREATE TABLE `tresorier` (
   `mail_tresorier` varchar(50) DEFAULT NULL,
   `mdp_tresorier` varchar(50) DEFAULT NULL,
   `adresse` varchar(50) DEFAULT NULL,
-  `id_club` int(11) NOT NULL,
-  `id_note_frais` int(11) NOT NULL
+  `id_club` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `tresorier`
 --
 
-INSERT INTO `tresorier` (`id_tresorier`, `nom_tresorier`, `prenom_tresorier`, `mail_tresorier`, `mdp_tresorier`, `adresse`, `id_club`, `id_note_frais`) VALUES
-(2, 'JP', 'Pierre', 'tresorier@fredi.fr', '0000', '31000 toulouse, 45 rue de metz', 1, 0);
+INSERT INTO `tresorier` (`id_tresorier`, `nom_tresorier`, `prenom_tresorier`, `mail_tresorier`, `mdp_tresorier`, `adresse`, `id_club`) VALUES
+(2, 'JP', 'Pierre', 'tresorier@fredi.fr', '0000', '31000 toulouse, 45 rue de metz', 1);
 
 --
 -- Index pour les tables déchargées
@@ -438,8 +437,7 @@ ALTER TABLE `responsable_legal`
 --
 ALTER TABLE `tresorier`
   ADD PRIMARY KEY (`id_tresorier`),
-  ADD KEY `Tresorier_Club_FK` (`id_club`),
-  ADD KEY `Tresorier_note_frais_FK` (`id_note_frais`);
+  ADD KEY `Tresorier_Club_FK` (`id_club`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -533,8 +531,7 @@ ALTER TABLE `responsable_crib`
 -- Contraintes pour la table `tresorier`
 --
 ALTER TABLE `tresorier`
-  ADD CONSTRAINT `tresorier_Club_FK` FOREIGN KEY (`id_club`) REFERENCES `club` (`id_club`),
-  ADD CONSTRAINT `tresorier_Note_Frais_FK` FOREIGN KEY (`id_note_frais`) REFERENCES `note_frais` (`id_note_frais`);
+  ADD CONSTRAINT `tresorier_Club_FK` FOREIGN KEY (`id_club`) REFERENCES `club` (`id_club`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -16,7 +16,7 @@ include 'inc/user_restriction.php';
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
                 <h1 class="header-headline bold">DEVELOPEURS</h1>
-                <h4 class="header-running-text light">- Yann Dorego</h4>
+                <h4 class="header-running-text light">- Yann Do Rego</h4>
                 <h4 class="header-running-text light">- Antoine Boube-Astugue</h4>
                 <h4 class="header-running-text light">- Antoine Bellino</h4>
                 <h4 class="header-running-text light">- Paco Barbé</h4>

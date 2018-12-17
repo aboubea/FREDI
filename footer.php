@@ -13,8 +13,7 @@
         <div class="col-sm-2"></div>
 
         <div class="col-sm-8 webscope">
-            <span class="webscope-text"> A free template by </span>
-            <a href="https://webscopeapp.com"> <img src="assets/images/webscope.svg"/> </a>
+            <span class="webscope-text"> Réalisé par le groupe 2 </span>
         </div>
         <!--webscope-->
 

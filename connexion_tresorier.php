@@ -76,11 +76,7 @@ if ($submit) {
         </div><!--hero-->
         
 
-<?php
-include 'logo.php';
-include 'team.php';
-include 'footer.php';
-?>
+
 
 </body>
 </html>
