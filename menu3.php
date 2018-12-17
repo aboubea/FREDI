@@ -123,7 +123,6 @@
                 <button class="header-btn">Espace Personnel</button>
             </a>
             
-            
         <?php
         //MENU VISITEUR
             }else{
