@@ -128,10 +128,10 @@
             }else{
         ?>
             <!-- Espace Administration -->
-            <a href="espace_tresorier.php">
-                <button class="header-btn">Espace Trésorier</button>
+            <a href="connexion_tresorier.php">
+            <button class="header-btn">Tresorier</button>
             </a>
-            
+
             <!-- Responsable legal -->
             <a href="connexion_resp_leg.php">
                 <button class="header-btn">Espace Responsable Legal</button>

@@ -21,7 +21,7 @@ $adherentCSVDAO = new AdherentCSVDAO;
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Adhérent<br></h1>
+                <h1 class="header-headline bold">Adhérent Majeur<br></h1>
                 <h4 class="header-running-text light"> Vous êtes sur la page d'inscription ></h4>
                 </div><!--hero-left-->
                 <div class="base">
@@ -31,7 +31,8 @@ $adherentCSVDAO = new AdherentCSVDAO;
 <!-- Verification de licence si déjà présente dans la BDD -->
 <div class="row">
         <div class="col-xs-12">
-          <h2 align = "center">Inscription Adhérent</h2>
+          <h2 align = "center">Inscription Licencié Majeur</h2>
+          <p align="center">Pour vous inscrire, vous devez être <strong>majeur</strong>, sinon votre responsable légal doit procéder à votre inscription <a href="register_resp_leg.php">ici</a>.</p>
 
           <?php
           //Si le formulaire de test est fini on affichera l'autre formulaire d'inscription
@@ -98,7 +99,15 @@ if ($submit) {
     $mail_inscrit = isset($_POST['mail_inscrit']) ? $_POST['mail_inscrit'] : '';
     $mdp_inscrit = isset($_POST['mdp_inscrit']) ? $_POST['mdp_inscrit'] : '';
     $id_club = isset($_POST['id_club']) ? $_POST['id_club'] : '';
-    
+
+    //On vérifie si l'adhérent est mineur
+    $date_now = date("Y-m-d");
+    $datetime1 = new DateTime($date_now);
+    $datetime2 = new DateTime($date_naissance_adh);
+    $interval = $datetime1->diff($datetime2);
+
+    if ($interval->format('%Y') >= "18"){
+
     //-- On hache le mdp donné pour l'insérer dans la BDD --//
     $mdp_hash = password_hash($mdp_inscrit, PASSWORD_BCRYPT);
 
@@ -122,10 +131,13 @@ if ($submit) {
 
     // Obligatoire sinon PHP continue à exécuter le script
     exit;  
-
+    //Si l'adhérent n'est pas majeur on le redirige
+} else {
+    echo "<p align='center'><strong><i class='fas fa-exclamation-triangle'></i> Vous devez être majeur !</strong> Un responsable legal doit prendre en charge votre inscription. </p><i class='fas fa-exclamation-triangle'></i>";
+}
 //Si tout n'est pas remplis > erreur
 } else {    
-    $erreur = "<p align='center'><strong>Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp.</strong></p>";
+    $erreur = "<p align='center'><strong><i class='fas fa-exclamation-triangle'></i> Vous n'avez pas saisis toutes les informations ! Veuillez remplir tous les champs svp. </strong><i class='fas fa-exclamation-triangle'></i></p>";
 }
 }
 
@@ -137,7 +149,7 @@ if ($form_test === true) {
         </div>
 </div>
 
-<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a> | <a href="register_resp_leg.php">Vous êtes mineur ?</a> (Un responsable legal doit vous inscrire).</p>
+<p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> | <a href="connexion_adh.php">Vous possédez déjà un compte ?</a> | <a href="register_resp_leg.php">Vous êtes mineur ?</a></p>
 
 
 <!-- FIN BASE ---------------------------------------------------------------------------------------------------------------- -->

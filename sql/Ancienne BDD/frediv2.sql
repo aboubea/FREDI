@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 12 déc. 2018 à 10:25
+-- Généré le :  mar. 11 déc. 2018 à 01:47
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `fredi`
 --
+CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `fredi`;
 
 -- --------------------------------------------------------
 
@@ -44,17 +46,23 @@ CREATE TABLE `adherent` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONS POUR LA TABLE `adherent`:
+--   `id_club`
+--       `club` -> `id_club`
+--   `id_resp_leg`
+--       `responsable_legal` -> `id_resp_leg`
+--
+
+--
 -- Déchargement des données de la table `adherent`
 --
 
 INSERT INTO `adherent` (`licence_adh`, `nom_adh`, `prenom_adh`, `sexe_adh`, `date_naissance_adh`, `adresse_adh`, `cp_adh`, `ville_adh`, `mail_inscrit`, `mdp_inscrit`, `id_club`, `id_resp_leg`) VALUES
-('10', 'JP', 'Antoine', 'H', '1997-06-07', '4 rue idrac', '31000', 'toulouse', 'antoineba@outlook.fr', '$2y$10$n2PbT56IT/MexWDxFf7qPe8tMMzROoKSWxFKDQhZoAReoXiPcD4WS', 1, NULL),
 ('140506071023', 'Boube', 'Antoine', 'F', '1996-11-26', '4 rue idrac', '31000', 'toulouse', 'antoine.boubeastugue@outlook.fr', '$2y$10$7SxFXP8LvlXGHGo072kW7./XLKfPaJ6TkJccVHVGV76/25EmRkfdK', 1, NULL),
 ('170540010556', 'Barbé', 'Paco', 'H', '1997-05-03', '6 RUE GEORGES PICOT', '31400', 'Toulouse', 'paco.barbe@outlook.fr', '$2y$10$QYZOSx/5ITAy3IwRIMLXcOIHMqCYqzQYUvhDzCEe.1w728Fz8BKLu', 50, NULL),
 ('170540010557', 'Azerty', 'Azert', 'H', '1997-07-18', '5 RUE GEORGES PICOT', '31400', 'TOULOUSE', 'azerty.azer@outlook.fr', '$2y$10$bdnRY5ywjEW3ZTiswASCKO3PM7ic2a35nboCz8Iuw.UW2uNMGE/di', 45, NULL),
 ('170540010558', 'Jean', 'Bonneau', 'H', '1997-06-05', '2, Rue Picasso', '31400', 'Toulouse', 'jean.bonneau@outlook.fr', '$2y$10$sQnYXeoYx7mh77qExfoOX.y3EVjRokFH.p.KdVjERw3Zc8iup6kqC', 7, NULL),
-('170540010561', 'Barbé', 'Charly', 'H', '1997-05-03', '13 rue du Marché', '66300', 'Banyuls-Dels-Aspres', 'charly.barbe@outlook.fr', '$2y$10$119pAom7om43aanDr1ciV.fvKaqK07xuc0EdYfcWRgqX.9TCciL9a', 1, 4),
-('57', 'Boube', 'Antoine', 'H', '1997-06-13', '4 rue idrac', '31000', 'toulouse', 'bastugue@outlook.fr', '$2y$10$ym2WWS7zA0i0OKEqBu/wZe0xNmTXjhCA9nglm0Q7Rdbmd7Q3F.S/.', 1, NULL);
+('170540010561', 'Barbé', 'Charly', 'H', '1997-05-03', '13 rue du Marché', '66300', 'Banyuls-Dels-Aspres', 'charly.barbe@outlook.fr', '$2y$10$119pAom7om43aanDr1ciV.fvKaqK07xuc0EdYfcWRgqX.9TCciL9a', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -72,6 +80,10 @@ CREATE TABLE `adherent_csv` (
   `cp_adh_csv` char(5) DEFAULT NULL,
   `ville_adh_csv` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONS POUR LA TABLE `adherent_csv`:
+--
 
 --
 -- Déchargement des données de la table `adherent_csv`
@@ -130,6 +142,12 @@ CREATE TABLE `club` (
   `libelle_club` varchar(255) NOT NULL,
   `id_ligue` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONS POUR LA TABLE `club`:
+--   `id_ligue`
+--       `ligue` -> `id_ligue`
+--
 
 --
 -- Déchargement des données de la table `club`
@@ -199,6 +217,10 @@ CREATE TABLE `indemnite` (
   `tarif_kilometrique` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELATIONS POUR LA TABLE `indemnite`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -219,15 +241,21 @@ CREATE TABLE `ligne_frais` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONS POUR LA TABLE `ligne_frais`:
+--   `id_motif`
+--       `motif` -> `id_motif`
+--   `id_note_frais`
+--       `note_frais` -> `id_note_frais`
+--
+
+--
 -- Déchargement des données de la table `ligne_frais`
 --
 
 INSERT INTO `ligne_frais` (`id_ligne_frais`, `date_frais`, `trajet_frais`, `km_parcourus`, `cout_peage`, `cout_repas`, `cout_hebergement`, `annee`, `id_motif`, `id_note_frais`) VALUES
 (1, '2018-11-26', 'vince', 4, '45', '3', '8', 0000, 5, 1),
 (10, '2018-11-01', 'Bordereau - Brives', 56, '130', '27', '13', 0000, 2, 2),
-(11, '2018-11-08', 'Rennes', 10, '10', '11', '12', 0000, 1, 2),
-(12, '2018-11-26', 'toulouse', 4, '45', '3', '8', 0000, 3, 4),
-(13, '2018-11-14', 'toulouse', 78, '45', '4', '65', 0000, 5, 4);
+(11, '2018-11-08', 'Rennes', 10, '10', '11', '12', 0000, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -240,6 +268,10 @@ CREATE TABLE `ligue` (
   `libelle_ligue` varchar(255) NOT NULL,
   `nom_ligue` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONS POUR LA TABLE `ligue`:
+--
 
 --
 -- Déchargement des données de la table `ligue`
@@ -262,6 +294,10 @@ CREATE TABLE `motif` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONS POUR LA TABLE `motif`:
+--
+
+--
 -- Déchargement des données de la table `motif`
 --
 
@@ -282,19 +318,22 @@ CREATE TABLE `note_frais` (
   `id_note_frais` int(11) NOT NULL,
   `licence_adh` varchar(25) NOT NULL,
   `annee` int(11) DEFAULT NULL,
-  `is_validate` int(11) DEFAULT '0',
-  `id_club` int(11) DEFAULT '0'
+  `is_valdidate` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONS POUR LA TABLE `note_frais`:
+--   `licence_adh`
+--       `adherent` -> `licence_adh`
+--
 
 --
 -- Déchargement des données de la table `note_frais`
 --
 
-INSERT INTO `note_frais` (`id_note_frais`, `licence_adh`, `annee`, `is_validate`, `id_club`) VALUES
-(1, '140506071023', 2018, 1, 0),
-(2, '170540010556', 2018, 0, 0),
-(3, '10', 2018, 0, 1),
-(4, '57', 2018, 0, 1);
+INSERT INTO `note_frais` (`id_note_frais`, `licence_adh`, `annee`, `is_valdidate`) VALUES
+(1, '140506071023', 2018, 0),
+(2, '170540010556', 2018, 0);
 
 -- --------------------------------------------------------
 
@@ -310,6 +349,12 @@ CREATE TABLE `responsable_crib` (
   `mdp_resp_crib` varchar(50) DEFAULT NULL,
   `id_ligue` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONS POUR LA TABLE `responsable_crib`:
+--   `id_ligue`
+--       `ligue` -> `id_ligue`
+--
 
 -- --------------------------------------------------------
 
@@ -327,6 +372,10 @@ CREATE TABLE `responsable_legal` (
   `mail_resp_leg` varchar(200) DEFAULT NULL,
   `mdp_resp_leg` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONS POUR LA TABLE `responsable_legal`:
+--
 
 --
 -- Déchargement des données de la table `responsable_legal`
@@ -356,11 +405,12 @@ CREATE TABLE `tresorier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `tresorier`
+-- RELATIONS POUR LA TABLE `tresorier`:
+--   `id_club`
+--       `club` -> `id_club`
+--   `id_note_frais`
+--       `note_frais` -> `id_note_frais`
 --
-
-INSERT INTO `tresorier` (`id_tresorier`, `nom_tresorier`, `prenom_tresorier`, `mail_tresorier`, `mdp_tresorier`, `adresse`, `id_club`, `id_note_frais`) VALUES
-(2, 'JP', 'Pierre', 'tresorier@fredi.fr', '0000', '31000 toulouse, 45 rue de metz', 1, 0);
 
 --
 -- Index pour les tables déchargées
@@ -455,7 +505,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT pour la table `ligne_frais`
 --
 ALTER TABLE `ligne_frais`
-  MODIFY `id_ligne_frais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_ligne_frais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `ligue`
@@ -473,7 +523,7 @@ ALTER TABLE `motif`
 -- AUTO_INCREMENT pour la table `note_frais`
 --
 ALTER TABLE `note_frais`
-  MODIFY `id_note_frais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_note_frais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `responsable_crib`
@@ -491,7 +541,7 @@ ALTER TABLE `responsable_legal`
 -- AUTO_INCREMENT pour la table `tresorier`
 --
 ALTER TABLE `tresorier`
-  MODIFY `id_tresorier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tresorier` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées

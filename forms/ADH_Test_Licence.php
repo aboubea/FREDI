@@ -17,7 +17,7 @@ if (isset($erreur)) {
 
 <form align="center" action="<?php echo $action; ?>" method="post">
 <label for="licence_adh_csv">Saisissez votre Licence :</label>
-  <input placeholder="Ex. : 170540010556" type="text" name="licence_adh_csv" id="licence_adh_csv" requiered="requiered" value="">
+  <input placeholder="Ex. : 170540010556" type="text" name="licence_adh_csv" id="licence_adh_csv" required="required" value="">
   <br />
 
   <input class="btn btn-primary" type="submit" name="submit2" value="Vérifier">

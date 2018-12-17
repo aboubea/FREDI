@@ -94,7 +94,7 @@ if (isset($_SESSION['mail_resp_leg'])) {
   <?php
 }
 ?>
-  
+    <br />
   <input class="btn btn-primary" type="submit" name="submit" value="S'inscrire">
   
 </form>
