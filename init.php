@@ -37,3 +37,8 @@ define('APPLINAME','fredi');
  define('DB_PASSWORD','');
  define('DB_HOST','localhost');
  define('DB_NAME','fredi');
+
+ //Fonction permettant de rediriger plus facilement en cas d'erreur (a la place d'un header)
+ function rediriger($url){
+   die('<meta http-equiv="refresh" content="0;URL='.$url.'">');
+ }

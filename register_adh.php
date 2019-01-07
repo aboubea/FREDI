@@ -31,7 +31,7 @@ $adherentCSVDAO = new AdherentCSVDAO;
 <!-- Verification de licence si déjà présente dans la BDD -->
 <div class="row">
         <div class="col-xs-12">
-          <h2 align = "center">Inscription Licencié Majeur</h2>
+          <h2 align ="center">Inscription Licencié Majeur</h2>
           <p align="center">Pour vous inscrire, vous devez être <strong>majeur</strong>, sinon votre responsable légal doit procéder à votre inscription <a href="register_resp_leg.php">ici</a>.</p>
 
           <?php
@@ -47,7 +47,7 @@ $adherentCSVDAO = new AdherentCSVDAO;
             // On récupère les données de l'adhérent dans la table CSV par sa licence (s'il n'est pas présent, il n'y aura pas de données pré-remplies)
             $adherent_csv = $adherentCSVDAO->find($licence_adh_csv);
             
-            //Début de vérification d'un adhérent 
+            //Début de vérification d'un adhérent
             if ($adherent_csv ==! false && $adherent_csv->getLicence_adh_csv() ==! "" ) {
             $message = "Votre licence a été trouvée dans notre base de données ! Veuillez fournir un mail, un mot de passe et le club associé.";
             ?>
@@ -127,7 +127,8 @@ if ($submit) {
 
     // Ajoute l'enregistrement dans la BDD
     $nb = $adherentDAO->insert_adh($adherent);
-    header('Location: connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
+    rediriger('./connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
+    //header('Location: connexion_adh.php?inscrit=1&mail='.$mail_inscrit.'');
 
     // Obligatoire sinon PHP continue à exécuter le script
     exit;  

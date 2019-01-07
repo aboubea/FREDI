@@ -29,6 +29,26 @@ class AdherentDAO extends DAO {
   }
 
   /**
+   * Lecture d'un adherent par sa licence pour savoir si il est déjà inscrit dans la base de données
+   *
+   * @param type $licence_adh
+   * @return \Adherent
+   */
+  function find_if_exist($licence_adh) {
+    $sql = "select * from adherent where licence_adh=:licence_adh";
+    $params = array(":licence_adh" => $licence_adh);
+    $sth = $this->executer($sql, $params);
+    $row = $sth->fetch(PDO::FETCH_ASSOC);
+    if ($row !==FALSE) {
+      $exist = true;
+    } else {
+      $exist = false;
+    }
+    // Retourne l'objet métier
+    return $adherent;
+  }
+
+  /**
    * Lecture d'un adherent par son EMAIL
    *
    * @param type $mail_inscrit

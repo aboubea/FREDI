@@ -23,7 +23,7 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
                 <h1 class="header-headline bold">Espace Adhérent </h1>
-                <h4 class="header-running-text light"><?php echo "Test" ;?> ></h4>
+                <h4 class="header-running-text light">Licencié : <?php echo $adherent->getPrenom_adh() . ' ' . $adherent->getNom_adh() ;?></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
@@ -42,10 +42,6 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
  $id_club = $adherent->getid_club();
           $nb1 = $notefraisDAO->insert($licence_adh, $id_club);
 ?>
-
-<p>Revenir à la page d'<a href="index.php">accueil</a></p>
-
-
         </div>
 </div>
 <p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a></p>
