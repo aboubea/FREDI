@@ -20,7 +20,7 @@
                     </a>
 
                     <!-- Inscription d'un Adhérent -->
-                    <a href="register_adh.php">
+                    <a href="register_adh_mineur.php">
                     <button class="header-btn">Inscrire un licencié</button>
                     </a>
                     
