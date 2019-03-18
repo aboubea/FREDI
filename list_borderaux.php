@@ -66,6 +66,8 @@ if (count($notes) !== 0){
 
       } else {
           echo '<td>Oui</td>';
+          echo '<td>validé</td>';
+          echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
       }
 
 
