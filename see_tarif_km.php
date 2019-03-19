@@ -13,6 +13,7 @@ header('Location:index.php?private=1');
 }
 $tresorierDAO = new TresorierDAO();
 $tresorier= $tresorierDAO->findByMail($mail_tresorier);
+$annee = date('Y');
 ?>
 <html>
 <body>
@@ -24,7 +25,7 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-                <h1 class="header-headline bold">Edition du tarif </h1>
+                <h1 class="header-headline bold">Tarif kilométrique </h1>
                 <h4 class="header-running-text light"> Trésorier : <?php echo $tresorier->getprenom_tresorier() . ' ' . $tresorier->getnom_tresorier() ;?> ></h4>
                 </div><!--hero-left-->
                 <div class="base">
@@ -35,7 +36,7 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
 
 <div class="row"> 
         <div class="col-xs-12">
-          <h3>Editer le tarif kilométrique</h3>
+          <h3 align="center">Voici le tarif kilométrique pour l'année <?php echo $annee ; ?> </h3>
 
           <?php 
           if(isset($_GET["success"])){
@@ -46,11 +47,10 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
           $indemniteDAO = new IndemniteDAO();
 
           //On récupère l'indemnité de l'annee
-          $indemnite = $indemniteDAO->findIndemnite();
+          $indemnite = $indemniteDAO->findIndemnite($annee);
 
           //Si l'indemnité est présente dans la BDD
-            if ($indemnite->getannee() ==! null) {
-              var_dump($indemnite);
+            if ($indemnite->gettarif_kilometrique() ==! null) {
                 ?>
 
             <table align='center'>
@@ -60,15 +60,14 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
                 </tr>
                     <?php
                         echo '<tr>';
-                        echo '<td>'.$indemnite->getannee().'</td>';
-                        echo '<td>'.$indemnite->gettarif_kilometrique().'</td>';
+                        echo '<td>'.$indemnite->getAnnee().'</td>';
+                        echo '<td>'.$indemnite->getTarif_kilometrique().'</td>';
                         echo '</tr>';
                     ?>
             </table>
 
           <?php
             }else{
-              var_dump($indemnite);
               $annee = date('Y');
               echo '<p>Vous n\'avez pas encore fixer de tarif kilométrique ! Veuillez fixer un tarif kilométrique pour l\'année '.$annee.'.</p>';
               echo '<p>Pour modifier le tarif kilométrique, cliquez sur <strong>"Fixer un tarif"</strong>.</p>';
