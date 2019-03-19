@@ -71,7 +71,7 @@ if (count($notes) !== 0){
       } else {
           echo '<td><a href = "unvalidate_tresorier.php?id_note_frais='.$note->getid_note_frais().'">Dé-Valider</a></td>';
       }
-      echo '<td><a href="">Lien en PDF</a></td>';
+      echo '<td><a href="pdf.php?id_note_frais='.$note->getid_note_frais().'">Lien en PDF</a></td>';
       echo '</tr>';
       
     }
