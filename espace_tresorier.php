@@ -71,7 +71,7 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
         <div class="col-xs-12">
           <h2>Modifier de tarif kilométrique de l'année en cours </h2>
           <p>Pour modifier le tarif kilométrique, cliquez sur <strong>"Tarif Kilométrique"</strong>.</p>
-          <p align='center'><a class="btn btn-primary" href="edit_tarif_km.php" role="button">Tarif Kilométrique »</a></p>
+          <p align='center'><a class="btn btn-primary" href="see_tarif_km.php" role="button">Tarif Kilométrique »</a></p>
        </div>
 </div>
 

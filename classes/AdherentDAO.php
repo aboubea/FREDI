@@ -132,7 +132,7 @@ function findAllByIdRespLeg($id_resp_leg) {
   foreach ($rows as $row) {
     $tableau[] = new Adherent($row);
   }
-  // Retourne un tableau d\'objet métier
+  // Retourne un tableau d'objet métier
   return $tableau;
 }
 
