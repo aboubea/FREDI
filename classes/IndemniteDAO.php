@@ -24,23 +24,23 @@ class IndemniteDAO extends DAO
     }
 
     // Trouver l'indemnité de l'année en cours
-    function findIndemnite()
+    function findIndemnite($annee)
     {
-        $annee = date('Y');
+        //$annee = date('Y');
         
-        $sql = "SELECT * FROM indemnite WHERE annee = :annee_km ";
-        $params = array(
-            ":annee_km"=>$annee,
-        );
+        $sql = "SELECT * FROM indemnite WHERE annee =:annee";
+        $params = array(":annee"=>$annee);
         $sth = $this->executer($sql, $params);
         $row = $sth->fetch(PDO::FETCH_ASSOC);
-        if ($row !== FALSE) {
-            $indemnite = new Indemnite($row);
+        if ($row) {
+            $indemnite = new indemnite($row);
+            // Retourne l'objet métier
+            return $indemnite;
           } else {
-            $indemnite = new Indemnite();
+            return NULL;
           }
-        // Retourne l'objet métier
-        return $indemnite;
+        
+        
     }
 
     // Mettre à jour l'indemnité de l'année en cours
@@ -48,7 +48,7 @@ class IndemniteDAO extends DAO
     $year = date('Y');
     $sql = "UPDATE indemnite SET tarif_kilometrique = :tarif_kilometrique WHERE annee = '$year' ";
     $params = array(
-        ":tarif_kilometrique" => $indemnite->gettarif_kilometrique(),
+        ":tarif_kilometrique" => $indemnite->getTarif_kilometrique(),
     );
     $sth = $this->executer($sql,$params);
     $nb = $sth->rowcount();
