@@ -62,7 +62,7 @@ $annee = date('Y');
                         echo '<tr>';
                         echo '<td>'.$indemnite->getAnnee().'</td>';
                         echo '<td>'.$indemnite->getTarif_kilometrique().'</td>';
-                        echo '</tr>';
+                        echo '<td><a href="modifier_tarif_km.php?annee='.$indemnite->getAnnee().'">Modifier</a></td>';
                     ?>
             </table>
 
