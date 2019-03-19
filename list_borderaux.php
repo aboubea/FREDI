@@ -23,7 +23,7 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 <body>
 
 <?php include 'menu3.php' ; ?>
-        
+
         <!-- Hero-Section
           ================================================== -->
 
@@ -38,10 +38,10 @@ $notes= $notefraisDAO->findbylicence($licence_adh);
 
 <h2 align='center'>Mes Borderaux</h2>
 
-<div class="row"> 
+<div class="row">
         <div class="col-xs-12">
           <h3 align='center'>Sélectionner votre borderau pour le visualiser : </h3>
-          
+
 <br />
 <?php
 if (count($notes) !== 0){
@@ -53,7 +53,7 @@ if (count($notes) !== 0){
     echo '<th>Ajouter vos frais</th>';
     echo '<th>Exemplaire en PDF</th>';
     echo '</tr>';
-    
+
     foreach ($notes as $note) {
       echo '<tr>';
       echo '<td>'.$note->getannee().'</td>';
@@ -61,11 +61,16 @@ if (count($notes) !== 0){
       if ($validate == 0)
       {
           echo '<td>Non</td>';
+          echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
+          echo '<td><a href="insertion_ligne.php?id_note_frais='.$note->getid_note_frais().'">Ajouter</a></td>';
+
       } else {
           echo '<td>Oui</td>';
+          echo '<td>validé</td>';
+          echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
       }
-      echo '<td><a href="lire_ligne.php?id_note_frais='.$note->getid_note_frais().'">Visualiser</a></td>';
-      echo '<td><a href="insertion_ligne.php?id_note_frais='.$note->getid_note_frais().'">Ajouter</a></td>';
+
+
       if ($validate == 0)
       {
           echo '<td>En attente de validation par le trésorier</td>';
@@ -73,7 +78,7 @@ if (count($notes) !== 0){
           echo '<td>Lien en PDF</td>';
       }
       echo '</tr>';
-      
+
     }
     echo '</table>';
 } else {
