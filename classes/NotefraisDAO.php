@@ -32,7 +32,7 @@ class NotefraisDAO extends DAO {
         // Retourne un tableau d\'objet métier
         return $tableau;
       } */
-    
+
     function insert($licence_adh, $id_club){
         $sql = "insert into note_frais (licence_adh, annee, id_club) values (:licence_adh, YEAR(CURRENT_DATE), :id_club)";
 
@@ -44,8 +44,7 @@ class NotefraisDAO extends DAO {
         return $nb;
   }
 
-  function findbylicence($licence_adh)
-{
+  function findbylicence($licence_adh){
   $sql ="select * from note_frais where licence_adh = :licence_adh";
   $params = array(":licence_adh" => $licence_adh);
   $sth = $this->executer($sql, $params);
