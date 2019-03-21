@@ -40,7 +40,7 @@ $annee = date('Y');
 
           <?php 
           if(isset($_GET["success"])){
-            echo '<p align"center"><strong>Le tarif kilométrique a été ajouté.</strong></p>';
+            echo '<p align"center"><strong>Le tarif kilométrique à été mis à jour.</strong></p>';
           }
 
           //On prépare les mathodes DAO
