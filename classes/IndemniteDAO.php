@@ -39,16 +39,14 @@ class IndemniteDAO extends DAO
           } else {
             return NULL;
           }
-        
-        
     }
 
     // Mettre à jour l'indemnité de l'année en cours
-    function update_frais($indemnite){
-    $year = date('Y');
-    $sql = "UPDATE indemnite SET tarif_kilometrique = :tarif_kilometrique WHERE annee = '$year' ";
+    function updateTarif($indemnite){
+    $sql = "UPDATE indemnite SET tarif_kilometrique = :tarif_kilometrique WHERE annee = :annee ";
     $params = array(
         ":tarif_kilometrique" => $indemnite->getTarif_kilometrique(),
+        ":annee" => $indemnite->getAnnee(),
     );
     $sth = $this->executer($sql,$params);
     $nb = $sth->rowcount();
@@ -56,7 +54,6 @@ class IndemniteDAO extends DAO
     // Retourne le nombre de mise à jour
     return $nb;
     }
-
 }
 
 // Classe IndemniteDAO
