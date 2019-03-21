@@ -43,7 +43,7 @@ $indemnite = $indemniteDAO->findIndemnite($annee);
 $submit = isset($_POST['submit']);
 
 if($submit){
-    $annee = isset($_GET['annee']) ? $_GET['annee'] : $_POST['annee'] ;
+    $annee = isset($_POST['annee']) ? $_POST['annee'] : $_POST['annee'] ;
     $tarif_kilometrique = isset($_POST['tarif_kilometrique']) ? $_POST['tarif_kilometrique'] : "";
 
     $indemnite =  new Indemnite(array(
