@@ -59,13 +59,33 @@ if (isset($message)) {
   <label for="ville_adh">Ville :</label>
   <input placeholder="Ex. : Toulouse" type="ville_adh" name="ville_adh" id="ville_adh" required="required" value="<?php echo $adherent_csv->getVille_adh_csv(); ?>">
   <br />
-  <label for="mail_inscrit">Mail :</label>
+
+  <?php
+  //Si le responsable Legal est connecté, on cache le mail et mot de passe en hidden (les champs seront mis à null)
+if (isset($_SESSION['mail_resp_leg'])) {
+  ?>
+  <label for="resp_leg">Responsable Legal :</label>
+  <input placeholder="" type="text" name="" id="resp_leg" disabled="disabled" required="required" value="<?php echo $responsable_legal->getPrenom_resp_leg() . " ". $responsable_legal->getNom_resp_leg() ; ?>">
+  <br />
+
+  <label for="id_resp_leg"></label>
+  <input placeholder="" type="hidden" name="" id="id_resp_leg" required="required" value="<?php echo $id_resp_leg ; ?>">
+  <input placeholder="" type="hidden" name="mail_inscrit" id="mail_inscrit" value="">
+  <input placeholder="" type="hidden" name="mdp_inscrit" id="mdp_inscrit" value="">
+
+  <?php
+} else {
+  ?>
+    <label for="mail_inscrit">Mail :</label>
   <input placeholder="mail@outlook.fr" type="email" name="mail_inscrit" id="mail_inscrit" required="required" value="">
   <br />
   <label for="mdp_inscrit">Mot de passe :</label>
   <input placeholder="******" type="password" name="mdp_inscrit" id="mdp_inscrit" required="required" value="">
   <br/>
-  
+<?php
+  }
+?>
+
   <label for="id_club">Club : </label>
   <select id="id_club" name="id_club">
   <?php
@@ -76,24 +96,6 @@ if (isset($message)) {
   ?>
   </select>
 
-  <?php
-  //Si le responsable Legal est connecté, le formulaire affiche le responsable legal de l'adhérent à inscrire, ainsi que son prenom/nom
-  //On récupère également en formulaire caché l'ID du responsable legal
-if (isset($_SESSION['mail_resp_leg'])) {
-    ?>
-
-  <br />
-  <label for="resp_leg">Responsable Legal :</label>
-  <input placeholder="" type="text" name="" id="resp_leg" disabled="disabled" required="required" value="<?php echo $responsable_legal->getPrenom_resp_leg() . " ". $responsable_legal->getNom_resp_leg() ; ?>">
-  <br />
-
-  <label for="id_resp_leg"></label>
-  <input placeholder="" type="hidden" name="" id="id_resp_leg" required="required" value="<?php echo $id_resp_leg ; ?>">
-  <br />
-
-  <?php
-}
-?>
     <br />
   <input class="btn btn-primary" type="submit" name="submit" value="S'inscrire">
   

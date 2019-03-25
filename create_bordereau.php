@@ -6,7 +6,6 @@ $mail_inscrit = $_SESSION['mail_inscrit'];
 $adherentDAO = new AdherentDAO();
 $adherent= $adherentDAO->findByMail($mail_inscrit);
 
-
 $licence_adh = $adherent->getLicence_adh();
 
 $notefraisDAO = new NotefraisDAO();

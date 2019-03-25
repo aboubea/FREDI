@@ -1,20 +1,34 @@
 <?php
 include 'head.php';
 include 'init.php';
-// Récupère la liste des Clubs (liste déroulante) et les Adhérents présents (pour ne pas rentrer un email déjà présent)
+session_start();
+
+if (isset($_SESSION['mail_inscrit'])) {
+  // Si l'adhérent MAJEUR est connecté, on récupère son mail stocké en SESSION lors de la connexion
+  $mail_inscrit = $_SESSION['mail_inscrit'];
+
+  // Et les infos de l'adherent majeur dans $adherent (tableau objet) et notamment sa licence
+  $adherentDAO = new AdherentDAO();
+  $adherent= $adherentDAO->findByMail($mail_inscrit);
+  $licence_adh = $adherent->getLicence_adh();
+
+}elseif(isset($_SESSION['mail_resp_leg'])){
+  // Si le responsable est connecté, on récupère son ID stocké en SESSION lors de la connexion
+  $id_resp_leg = $_SESSION['id_resp_leg'];
+
+  // Et les infos de l'adherent mineur dans $adherent (tableau objet) et notamment sa licence (via le lien => GET)
+  $adherentDAO = new AdherentDAO();
+  $licence_adh = isset($_GET['licence_adh']) ? $_GET['licence_adh'] : "";
+  $adherent= $adherentDAO->find($licence_adh);
+}else{
+  // Sinon on redirige vers la page d'accueil avec un message d'erreur
+  header('Location:index.php?private=1');
+}
+
+// Récupération des lignes de frais associées à l'ID note frais (du bordereau)
 $lignefraisDAO = new LignefraisDAO;
 $id_note_frais = $_GET['id_note_frais'];
 $lignes = $lignefraisDAO->find($id_note_frais);
-$notefraisDAO = new NotefraisDAO;
-$notefrais = $notefraisDAO->findAll();
-
-
-session_start();
-$mail_inscrit = $_SESSION['mail_inscrit'];
-$adherentDAO = new AdherentDAO();
-$adherent= $adherentDAO->findByMail($mail_inscrit);
-
-
 
 ?>
 <html>
@@ -22,11 +36,10 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 
 <?php include 'menu3.php' ; ?>
 
-<!-- Hero-Section
-  ================================================== -->
+<!-- Hero-Section -->
   <div class="hero row">
       <div class="hero-right col-sm-6 col-sm-6">
-          <h1 class="header-headline bold">Vos frais<br></h1>
+          <h1 class="header-headline bold">Visualiation Frais<br></h1>
           <h4 class="header-running-text light">Licencié : <?php echo $adherent->getPrenom_adh() . ' ' . $adherent->getNom_adh() ;?></h4>
           </div><!--hero-left-->
           <div class="base">
@@ -36,12 +49,14 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
 
 <div class="row">
         <div class="col-xs-12">
-          <h3 align='center'>Lignes de frais du bordereau :</h3>
+          <h3 align='center'>Lignes de frais :</h3>
 
 <br />
   <?php
     if (isset($_GET["ligne_ajoutee"])){
-      echo '<p align="center"><strong>Vos frais ont bien été ajoutés !</strong></p>';
+      echo '<p align="center"><strong>Votre frais a bien été ajouté !</strong></p>';
+    }elseif(isset($_GET["ligne_delete"])){
+      echo '<p align="center"><strong>Votre frais a bien été supprimé !</strong></p>';
     }
 
     if (count($lignes) !== 0){
@@ -66,14 +81,14 @@ $adherent= $adherentDAO->findByMail($mail_inscrit);
           echo '<td>'. $ligne->getcout_repas() .'</td>';
           echo '<td>'. $ligne->getcout_hebergement() .'</td>';
           //echo '<td><a href="modif_ligne.php?id_ligne_frais='.$ligne->getid_ligne_frais().'">Modifier</a></p></td>';
-          echo '<td><a href="delete_ligne.php?id_ligne_frais='.$ligne->getid_ligne_frais().'">Supprimer</a></p></td>';
+          echo '<td><a href="delete_ligne.php?id_ligne_frais='.$ligne->getid_ligne_frais().'&licence_adh='. $adherent->getLicence_adh() .'">Supprimer</a></p></td>';
           echo '</tr>';
 
         }
         echo '</table>';
     } else {
       echo '<p align="center">Vous n\'avez pas encore saisie vos lignes de frais.</p>';
-      echo '<p align="center"><a class="btn btn-primary" href="insertion_ligne.php?id_note_frais='.$id_note_frais.'" role="button">Ajouter une première ligne de frais »</a></p>';
+      echo '<p align="center"><a class="btn btn-primary" href="insertion_ligne.php?id_note_frais='.$id_note_frais.'&licence_adh='. $adherent->getLicence_adh() .'" role="button">Ajouter une première ligne de frais »</a></p>';
     }
 
 

@@ -43,12 +43,19 @@ if ($submit) {
         //On vérifie que le mail et mdp soient correct
         if ($responsable_legal->est_inscrit($mail_resp_leg, $mdp_resp_leg)) {
             
+            // On récupère les données du responsable pour les mettre dans un tableau objet ($responsable_legal) afin de les stocker en session
+            $responsable_legalDAO = new Responsable_legalDAO();
+            $responsable_legal= $responsable_legalDAO->findByMail($mail_resp_leg);
+
             //Si c'est bon on lance le processus de session
             session_start();
             
-            // On stocke l'email et on redirige l'utilisteur
+            // On stocke l'email et l'ID et on redirige l'utilisteur
             $_SESSION['mail_resp_leg'] = $mail_resp_leg ;
+            $_SESSION['id_resp_leg'] = $responsable_legal->getId_resp_leg();
+            
             header('Location: espace_resp_leg.php');
+            
             exit;
             
             //Si l'email et le mdp ne correspondent pas
@@ -85,7 +92,7 @@ if ($submit) {
 
         <div class="alert alert-info">
             <a href="mailto:<?php echo $mail ; ?>" class="btn btn-xs btn-primary pull-right">Vérifier ma boîte mail</a>
-            <strong>Un mail de validation a été envoyé à votre adresse : <a href="mailto:<?php echo $mail ; ?>"><?php echo $mail ; ?></a></strong> <i class="far fa-envelope"></i>.<br />
+            <strong>Un mail de validation a été envoyé à votre adresse : <a href="mailto:<?php echo $mail ; ?>"><?php echo $mail ; ?></a></strong> <i class="far fa-envelope-open"></i>.<br />
             <strong>Pensez à consulter votre boîte mail afin de confirmer votre compte.</strong>
         </div>
 

@@ -5,18 +5,17 @@ include 'init.php';
 //On démarre la session
 session_start();
 
-//On récupère le mail du responsable legal (pour trouver ses details personnels), si il n'y est pas, on a pas accès à la page
+//On récupère l'email et l'ID du responsable legal stocké en session, si il n'y est pas, on a pas accès à la page
 if (isset($_SESSION['mail_resp_leg'])) {
     $mail_resp_leg = $_SESSION['mail_resp_leg'];
+    $id_resp_leg = $_SESSION['id_resp_leg'];
 }else{
   header('Location:index.php?private=1');
 }
 
+// On récupère les infos du reponsable par son email dans $responsable_legal (tableau objet)
 $responsable_legalDAO = new Responsable_legalDAO();
 $responsable_legal= $responsable_legalDAO->findByMail($mail_resp_leg);
-
-//ID du responsable legal
-$id_resp_leg = $responsable_legal->getId_resp_leg();
 
 ?>
 <html>
@@ -24,8 +23,7 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
 
 <?php include 'menu3.php' ; ?>
         
-        <!-- Hero-Section
-          ================================================== -->
+        <!-- Hero-Section -->
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
@@ -98,7 +96,7 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
                 <th>Licence</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>Bordereaux</th>
+                <th>Frais</th>
             </tr>
             <?php
               foreach ($adherents_resp_leg as $adherent) {
@@ -107,7 +105,7 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
                   echo '<td>'.$adherent->getLicence_adh().'</td>';
                   echo '<td>'.$adherent->getNom_adh().'</td>';
                   echo '<td>'.$adherent->getPrenom_adh().'</td>';
-                  echo '<td><p><a class="btn btn-primary" href="list_borderaux.php?mail_inscrit='. $adherent->getMail_inscrit() .'&?licence_adh='. $adherent->getLicence_adh() .'" role="button">Accéder aux bordereaux</a></p></td>';
+                  echo '<td><p><a class="btn btn-primary" href="list_borderaux_mineur.php?id_resp_leg='. $id_resp_leg .'&licence_adh='. $adherent->getLicence_adh() .'" role="button">Accéder aux frais</a></p></td>';
                   echo '</tr>';
               } ?>
           </table>
@@ -124,6 +122,12 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
           <p><a class="btn btn-primary" href="register_adh_mineur.php" role="button">Ajouter un adhérent mineur</a></p>
         </div><!-- /col-xs-12 -->
 </div> <!-- /row -->
+
+<!-- BORDEREAU RESPONSABLE ------------------------------------------------------------------------------------------------ -->
+
+
+
+<!-- FIN BORDEREAU RESPONSABLE ---------------------------------------------------------------------------------------------- -->
 
 <!-- FIN BASE ------------------------------------------------------------------------------------------------------------------ -->
             </div>
