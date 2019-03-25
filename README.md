@@ -35,6 +35,10 @@ Connexion d'un responsable légal :
 - Login : test1@outlook.fr
 - Mot de passe : 0000
 
+Connexion du Trésorier :
+- Login : tresorier@fredi.fr
+- Mot de passe : 0000
+
 
 ## 5. LE PROJET FREDI WEB
 Le site FREDI consiste à saisir des bordereaux ( lignes de frais ) sur un site web une fois authentifié. 4 acteurs sont présents, l'adhérent, le responsable légal, le trésorier et le responsable du CRIB.

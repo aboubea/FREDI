@@ -30,7 +30,7 @@ $notes= $tresorierDAO->find_notes($id_club);
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
                 <h1 class="header-headline bold">Liste des Bordereaux : </h1>
-                <h4 class="header-running-text light">Trésorier : <?php echo $tresorier->getprenom_tresorier() . ' ' . $tresorier->getnom_tresorier() ;?></h4>
+                <h4 class="header-running-text light">Trésorier : <?php echo $tresorier->getprenom_tresorier() . ' ' . $tresorier->getnom_tresorier() ;?> ></h4>
                 </div><!--hero-left-->
                 <div class="base">
 

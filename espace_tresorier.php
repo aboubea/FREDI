@@ -25,7 +25,7 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
                 <h1 class="header-headline bold">Espace Trésorier </h1>
-                <h4 class="header-running-text light"><?php echo "Test" ;?> ></h4>
+                <h4 class="header-running-text light">Trésorier : <?php echo $tresorier->getprenom_tresorier() . ' ' . $tresorier->getnom_tresorier() ;?> ></h4>
                 </div><!--hero-left-->
                 <div class="base">
 
@@ -64,6 +64,14 @@ $tresorier= $tresorierDAO->findByMail($mail_tresorier);
           <h2>Editer les bordereaux</h2>
           <p>Pour valider ou éditer de(s) bordereau(x), cliquez sur <strong>"Borderaux"</strong>.</p>
           <p align='center'><a class="btn btn-primary" href="list_bordereau_tresorier.php" role="button">Borderaux »</a></p>
+       </div>
+</div>
+
+<div class="row">
+        <div class="col-xs-12">
+          <h2>Modifier de tarif kilométrique de l'année en cours </h2>
+          <p>Pour modifier le tarif kilométrique, cliquez sur <strong>"Tarif Kilométrique"</strong>.</p>
+          <p align='center'><a class="btn btn-primary" href="see_tarif_km.php" role="button">Tarif Kilométrique »</a></p>
        </div>
 </div>
 

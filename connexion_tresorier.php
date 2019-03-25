@@ -65,7 +65,7 @@ if ($submit) {
 <h2 align='center'> Connexion à l'espace Trésorier </h2>
 
 <?php
-    include 'forms/Trésorier_Connexion_Form.php';
+    include 'forms/Tresorier_Connexion_Form.php';
 ?>
 
 <p align="center"><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a> | <a href="index.php">Page d'accueil</a> </p>
