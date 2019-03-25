@@ -128,7 +128,40 @@ $con = db_connect($dsn, $user, $pass);
   $pdf->Cell(20, 10, "", 1, 1, 'C',1);
   }
   
+  $pdf->Cell(175, 10, "Montant des frais de deplacement", 1, 0, 'C');
+  $pdf->Cell(20, 10, "", 1, 1, 'C',1);
+  $pdf->Cell(0,7,"Je suis licencie sous le numero de licence suivant :",0,1);
+  $pdf->Cell(0,7,utf8_decode($nom_adh)." ". utf8_decode($prenom_adh).", licence numero ".utf8_decode($licence),0,1, "C", 1);
+
+  $pdf->Cell(50, 10, "Montant total des dons", 0, 0, 'L');
+  $pdf->Cell(20, 10, "! TOTAL !", 0, 1, 'C');
+
+  $pdf->SetFont('Helvetica','I',10);
+  $pdf->Cell(0, 10, "Pour beneficier du recu de dons, cette note de frais doit etre accompagnee de tous les justificatifs correspondants", 0, 1, 'C');
   
+  $pdf->Cell(20, 15, " ", 0, 1, 'C');
+  $pdf->SetFont('Helvetica','',10);
+  $pdf->SetX(70);
+  $pdf->Cell(20, 10, "A", 0, 0, 'C');
+  $pdf->Cell(45, 10, "", 0, 0, 'C',1);
+  $pdf->Cell(20, 10, "Le", 0, 0, 'C');
+  $pdf->Cell(45, 10, "", 0, 1, 'C',1);
+  $pdf->SetX(70);
+  $pdf->Cell(20, 5, " ", 0, 1, 'C');
+  $pdf->SetX(70);
+  $pdf->Cell(60, 15, "Signature du benevole", 0, 0, 'C');
+  $pdf->Cell(70, 15, "", 0, 1, 'C',1);
+  $pdf->Cell(20, 5, " ", 0, 1, 'C');
+
+  $pdf->SetFillColor(255, 179, 179);
+  $pdf->SetFont('Helvetica','B',10);
+  $pdf->Cell(100, 10, "Partie reservee a l association", 0, 1, 'C',1);
+  $pdf->SetFont('Helvetica','',10);
+  $pdf->Cell(100, 10, "Numero d ordre du Recu : 2009-007", 0, 1, 'L',1);
+  $pdf->Cell(100, 10, "Remis le :	", 0, 1, 'L',1);
+  $pdf->Cell(100, 10, "Signature du Tresorier :", 0, 1, 'L',1);
+
+
 
 
 
