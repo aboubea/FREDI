@@ -43,11 +43,14 @@ if ($submit) {
         //On vérifie que le mail et mdp soient correct
         if ($adherent->est_inscrit($mail_inscrit, $mdp_inscrit)) {
             
+            // Si le mail corresmond avec le mot de passe, on récupère les infos à stocker en session
+
             //Si c'est bon on lance le processus de session
             session_start();
             
             // On stocke l'email et on redirige l'utilisteur
-            $_SESSION['mail_inscrit'] = $mail_inscrit ;
+            $_SESSION['mail_inscrit'] = $mail_inscrit;
+
             header('Location: espace_adh.php');
             exit;
             

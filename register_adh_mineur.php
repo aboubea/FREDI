@@ -20,9 +20,11 @@ $id_resp_leg = $responsable_legal->getId_resp_leg();
 // On récupère la liste des adhérents présents dans la BDD
 $adherentDAO = new AdherentDAO;
 $adherents = $adherentDAO->findAll();
+
 // On récupère la liste des clubs présents dans la BDD
 $clubDAO = new ClubDAO;
 $clubs = $clubDAO->findAllClubs();
+
 // On prépare les méthodes de adherentCSVDAO
 $adherentCSVDAO = new AdherentCSVDAO;
 ?>
@@ -101,7 +103,7 @@ $erreur = "";
 
 // Formulaire soumi
 if ($submit) {
-    if (!empty($_POST['licence_adh']) AND !empty($_POST['nom_adh']) AND !empty($_POST['prenom_adh']) AND !empty($_POST['sexe_adh']) AND !empty($_POST['date_naissance_adh']) AND !empty($_POST['adresse_adh']) AND !empty($_POST['cp_adh']) AND !empty($_POST['ville_adh']) AND !empty($_POST['mail_inscrit']) AND !empty($_POST['mdp_inscrit'])) { 
+    if (!empty($_POST['licence_adh']) AND !empty($_POST['nom_adh']) AND !empty($_POST['prenom_adh']) AND !empty($_POST['sexe_adh']) AND !empty($_POST['date_naissance_adh']) AND !empty($_POST['adresse_adh']) AND !empty($_POST['cp_adh']) AND !empty($_POST['ville_adh'])) { 
     // Récupère les données du formulaire
     $licence_adh = isset($_POST['licence_adh']) ? $_POST['licence_adh'] : '';
     $nom_adh = isset($_POST['nom_adh']) ? $_POST['nom_adh'] : '';
@@ -111,8 +113,8 @@ if ($submit) {
     $adresse_adh = isset($_POST['adresse_adh']) ? $_POST['adresse_adh'] : '';
     $cp_adh = isset($_POST['cp_adh']) ? $_POST['cp_adh'] : '';
     $ville_adh = isset($_POST['ville_adh']) ? $_POST['ville_adh'] : '';
-    $mail_inscrit = isset($_POST['mail_inscrit']) ? $_POST['mail_inscrit'] : '';
-    $mdp_inscrit = isset($_POST['mdp_inscrit']) ? $_POST['mdp_inscrit'] : '';
+    $mail_inscrit = isset($_POST['mail_inscrit']) ? $_POST['mail_inscrit'] : null;
+    $mdp_inscrit = isset($_POST['mdp_inscrit']) ? $_POST['mdp_inscrit'] : null;
     $id_club = isset($_POST['id_club']) ? $_POST['id_club'] : '';
 
     //On vérifie si l'adhérent est mineur
@@ -124,7 +126,13 @@ if ($submit) {
     if ($interval->format('%Y') <= "18"){
 
     //-- On hache le mdp donné pour l'insérer dans la BDD --//
-    $mdp_hash = password_hash($mdp_inscrit, PASSWORD_BCRYPT);
+    if ($mdp_inscrit !== null && $mdp_inscrit !== "") {
+        $mdp_hash = password_hash($mdp_inscrit, PASSWORD_BCRYPT);
+    }
+    else{
+        $mdp_hash = null;
+        $mail_inscrit = null;
+    }
 
     $adherent = new Adherent(array(
         'licence_adh'=>$licence_adh,
@@ -143,6 +151,11 @@ if ($submit) {
 
     // Ajoute l'enregistrement dans la BDD
     $nb = $adherentDAO->insert($adherent, $id_resp_leg);
+
+    // On insert un bordereau automatiquement pour l'adhérent mineur
+    $notefraisDAO = new NotefraisDAO();
+    $nb1 = $notefraisDAO->insert($licence_adh, $id_club);
+
     header('Location: espace_resp_leg.php?inscrit=1');
 
     // Obligatoire sinon PHP continue à exécuter le script
