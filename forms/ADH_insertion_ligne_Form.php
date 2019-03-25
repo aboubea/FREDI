@@ -19,7 +19,7 @@ if (isset($erreur)) {
 ?>
 <form align="center" action="<?php echo $action; ?>" method="post">
 
-  <p>Date du Trajet :<br/><input type="Date" name="date_frais" required="required"  value="2018-11-26" /></p>
+  <p>Date du Trajet :<br/><input type="Date" name="date_frais" required="required"  value="<?php echo date('Y-m-d'); ?>" /></p>
   <p>Nom du Trajet :<br/><input placeholder="Nom du trajet..." name="trajet_frais" required="required"  type="text" value="" /></p>
   <p>Nombre de Kilomètre(s) parcourus :<br/><input placeholder="kilometre parcourus" name="km_parcourus" required="required" type="text" value="" /></p>
   <p>Coût du/des Péage(s)<br/><input placeholder="Frais de peage..." name="cout_peage" required="required"  type="text" value="" /></p>
