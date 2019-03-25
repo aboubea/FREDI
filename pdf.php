@@ -13,13 +13,26 @@ $pass = '';
 
 $con = db_connect($dsn, $user, $pass);
 
-    $sql = "SELECT adherent.licence_adh, note_frais.annee, ligne_frais.trajet_frais, nom_adh, prenom_adh,adresse_adh, cp_adh, ville_adh, date_frais, km_parcourus, cout_peage, cout_repas, cout_hebergement, libelle_motif
+    /*$sql = "SELECT adherent.licence_adh, note_frais.annee, ligne_frais.trajet_frais, nom_adh, prenom_adh,adresse_adh, cp_adh, ville_adh, date_frais, km_parcourus, cout_peage, cout_repas, cout_hebergement, libelle_motif
     FROM note_frais, adherent, ligne_frais, motif
     WHERE adherent.licence_adh=note_frais.licence_adh
     AND note_frais.id_note_frais=ligne_frais.id_note_frais
     AND ligne_frais.id_motif= motif.id_motif
     AND note_frais.id_note_frais =  $id;
-    ";
+    ";*/
+
+    $sql = "SELECT adherent.licence_adh, note_frais.annee, ligne_frais.trajet_frais, 
+              indemnite.tarif_kilometrique,nom_adh, prenom_adh,adresse_adh, cp_adh, ville_adh, date_frais, km_parcourus, 
+              (indemnite.tarif_kilometrique * km_parcourus) AS 'prix_km', 
+              cout_peage, cout_repas, cout_hebergement, libelle_motif, 
+              (indemnite.tarif_kilometrique * km_parcourus + cout_peage + cout_repas + cout_hebergement) AS 'prix_total' 
+            FROM note_frais, adherent, ligne_frais, motif, indemnite 
+            WHERE adherent.licence_adh=note_frais.licence_adh 
+            AND note_frais.id_note_frais=ligne_frais.id_note_frais 
+            AND ligne_frais.id_motif= motif.id_motif 
+            AND note_frais.annee = indemnite.annee
+            AND note_frais.id_note_frais =  $id;";
+            
     try {
       $sth = $con->prepare($sql);
       $sth->execute();
@@ -64,6 +77,7 @@ $con = db_connect($dsn, $user, $pass);
     $adresse_adh = $formulaire['adresse_adh'];
     $cp_adh = $formulaire['cp_adh'];
     $ville_adh = $formulaire['ville_adh'];    
+    $frais_km = $formulaire['tarif_kilometrique'];
   }
 
   $pdf->AddPage();
@@ -86,8 +100,9 @@ $con = db_connect($dsn, $user, $pass);
   $pdf->Cell(0,7,"certifie renoncer au remboursement des frais ci-dessous et les laisser a l association",0,1);
   $pdf->Cell(0,7,"Salle d Armes de Villers les Nancy, 1 rue Rodin - 54600 Villers les Nancy	",0,1, "C",1);
   $pdf->Cell(0,7,"en tant que don.",0,1);
-  $pdf->Cell(0,7,"Frais de deplacement",0,1);
-
+  $pdf->Cell(70,7,"Frais de deplacement",0,0);
+  $pdf->SetFont('Arial', 'B', 10);
+  $pdf->Cell(0,7,"Tarif kilometrique applique pour le remboursement : ".utf8_decode($frais_km)." euros/km",0,1);
 
 
 
@@ -106,14 +121,18 @@ $con = db_connect($dsn, $user, $pass);
   $pdf->Cell(20, 10, "Hebergement", 'B', 0, 'C');
   $pdf->Cell(20, 10, "Total", 'B', 1, 'C');
   
+  $montant_total = 0;
   foreach ($formulaires as $formulaire) {
     $trajet_frais = $formulaire['trajet_frais'];
     $date_frais = $formulaire['date_frais'];
     $km_parcourus = $formulaire['km_parcourus'];
+    $prix_km = $formulaire['prix_km'];
     $cout_peage = $formulaire['cout_peage'];
     $cout_repas = $formulaire['cout_repas'];
     $cout_hebergement = $formulaire['cout_hebergement'];
     $libelle_motif = $formulaire['libelle_motif'];
+    $prix_total = $formulaire['prix_total'];
+    $montant_total= $montant_total + $prix_total;
     
     // Liste des employés
   $pdf->SetFont('Arial', '', 8);
@@ -121,20 +140,20 @@ $con = db_connect($dsn, $user, $pass);
   $pdf->Cell(30, 10, utf8_decode($libelle_motif), 1, 0, 'C',1);
   $pdf->Cell(20, 10, utf8_decode($trajet_frais), 1, 0, 'C',1);
   $pdf->Cell(20, 10, utf8_decode($km_parcourus), 1, 0, 'C',1);
-  $pdf->Cell(20, 10, " ", 1, 0, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($prix_km), 1, 0, 'C',1);
   $pdf->Cell(20, 10, utf8_decode($cout_peage), 1, 0, 'C',1);
   $pdf->Cell(20, 10, utf8_decode($cout_repas), 1, 0, 'C',1);
   $pdf->Cell(20, 10, utf8_decode($cout_hebergement), 1, 0, 'C',1);
-  $pdf->Cell(20, 10, "", 1, 1, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($prix_total), 1, 1, 'C',1);
   }
   
   $pdf->Cell(175, 10, "Montant des frais de deplacement", 1, 0, 'C');
-  $pdf->Cell(20, 10, "", 1, 1, 'C',1);
+  $pdf->Cell(20, 10, utf8_decode($montant_total), 1, 1, 'C',1);
   $pdf->Cell(0,7,"Je suis licencie sous le numero de licence suivant :",0,1);
   $pdf->Cell(0,7,utf8_decode($nom_adh)." ". utf8_decode($prenom_adh).", licence numero ".utf8_decode($licence),0,1, "C", 1);
 
-  $pdf->Cell(50, 10, "Montant total des dons", 0, 0, 'L');
-  $pdf->Cell(20, 10, "! TOTAL !", 0, 1, 'C');
+  $pdf->Cell(50, 10, "Montant total des dons : ", 0, 0, 'L');
+  $pdf->Cell(20, 10, utf8_decode($montant_total)." euros", 0, 1, 'C');
 
   $pdf->SetFont('Helvetica','I',10);
   $pdf->Cell(0, 10, "Pour beneficier du recu de dons, cette note de frais doit etre accompagnee de tous les justificatifs correspondants", 0, 1, 'C');
